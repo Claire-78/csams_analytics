@@ -22,8 +22,9 @@ namespace CSAMS.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //Ignore for now, will be fixed to be a sqlite database.
-            //optionsBuilder.UseSqlServer(@"Server=localhost;Database=csams;Trusted_Connection=True");
+            var path = AppDomain.CurrentDomain.BaseDirectory;
+            if (path.Contains("bin"))
+            optionsBuilder.UseSqlite($"Data Source={path.Substring(0, path.IndexOf("bin"))}Data/csams.sqlite");
         }
     }
 

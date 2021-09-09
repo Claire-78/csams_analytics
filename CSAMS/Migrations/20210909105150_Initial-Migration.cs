@@ -11,11 +11,11 @@ namespace CSAMS.Migrations
                 name: "Forms",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Prefix = table.Column<string>(type: "VARCHAR(256)", maxLength: 256, nullable: true),
-                    Name = table.Column<string>(type: "VARCHAR(256)", maxLength: 256, nullable: true),
-                    Created = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Prefix = table.Column<string>(type: "VARCHAR", maxLength: 256, nullable: true),
+                    Name = table.Column<string>(type: "VARCHAR", maxLength: 256, nullable: true),
+                    Created = table.Column<byte[]>(type: "BLOB", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -26,10 +26,10 @@ namespace CSAMS.Migrations
                 name: "Roles",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", maxLength: 11, nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Key = table.Column<string>(type: "VARCHAR(256)", maxLength: 256, nullable: true),
-                    Name = table.Column<string>(type: "VARCHAR(256)", maxLength: 256, nullable: true)
+                    ID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Key = table.Column<string>(type: "VARCHAR", maxLength: 256, nullable: true),
+                    Name = table.Column<string>(type: "VARCHAR", maxLength: 256, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -40,18 +40,18 @@ namespace CSAMS.Migrations
                 name: "Fields",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", maxLength: 11, nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FormID = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    Type = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: true),
-                    Name = table.Column<string>(type: "VARCHAR(256)", maxLength: 256, nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Label = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HasComment = table.Column<int>(type: "int", maxLength: 1, nullable: false),
-                    Priority = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    Weight = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    Choices = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Required = table.Column<int>(type: "int", maxLength: 1, nullable: false)
+                    ID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    FormID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
+                    Type = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: true),
+                    Name = table.Column<string>(type: "VARCHAR", maxLength: 256, nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    Label = table.Column<string>(type: "TEXT", nullable: true),
+                    HasComment = table.Column<int>(type: "INTEGER", maxLength: 1, nullable: false),
+                    Priority = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
+                    Weight = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
+                    Choices = table.Column<string>(type: "TEXT", nullable: true),
+                    Required = table.Column<int>(type: "INTEGER", maxLength: 1, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,9 +68,9 @@ namespace CSAMS.Migrations
                 name: "Reviews",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", maxLength: 11, nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FormID = table.Column<int>(type: "int", maxLength: 11, nullable: false)
+                    ID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    FormID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -87,9 +87,9 @@ namespace CSAMS.Migrations
                 name: "Submissions",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", maxLength: 11, nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FormID = table.Column<int>(type: "int", maxLength: 11, nullable: false)
+                    ID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    FormID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -106,9 +106,9 @@ namespace CSAMS.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", maxLength: 11, nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Role = table.Column<int>(type: "int", maxLength: 11, nullable: false)
+                    ID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Role = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -125,15 +125,15 @@ namespace CSAMS.Migrations
                 name: "Courses",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", maxLength: 11, nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Hash = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: true),
-                    CourseCode = table.Column<string>(type: "VARCHAR(10)", maxLength: 10, nullable: true),
-                    CourseName = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: true),
-                    Teacher = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Year = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    Semester = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Hash = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: true),
+                    CourseCode = table.Column<string>(type: "VARCHAR", maxLength: 10, nullable: true),
+                    CourseName = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: true),
+                    Teacher = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    Year = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
+                    Semester = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -150,19 +150,19 @@ namespace CSAMS.Migrations
                 name: "Assignments",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", maxLength: 11, nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: true),
-                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Created = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true),
+                    ID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: true),
+                    Text = table.Column<string>(type: "TEXT", nullable: true),
+                    Created = table.Column<byte[]>(type: "BLOB", rowVersion: true, nullable: true),
                     PublishedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Deadline = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CourseID = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    SubmissionID = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    ReviewEnabled = table.Column<byte>(type: "tinyint", maxLength: 1, nullable: false),
-                    ReviewID = table.Column<int>(type: "int", maxLength: 11, nullable: false),
+                    CourseID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
+                    SubmissionID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
+                    ReviewEnabled = table.Column<byte>(type: "INTEGER", maxLength: 1, nullable: false),
+                    ReviewID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
                     ReviewDeadline = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Reviewers = table.Column<int>(type: "int", maxLength: 11, nullable: false)
+                    Reviewers = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -191,10 +191,10 @@ namespace CSAMS.Migrations
                 name: "UserCourses",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", maxLength: 11, nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserID = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    CourseID = table.Column<int>(type: "int", maxLength: 11, nullable: false)
+                    ID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
+                    CourseID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -217,11 +217,11 @@ namespace CSAMS.Migrations
                 name: "PeerReviews",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", maxLength: 11, nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AssignmentID = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    UserID = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    ReviewUserID = table.Column<int>(type: "int", maxLength: 11, nullable: false)
+                    ID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    AssignmentID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
+                    UserID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
+                    ReviewUserID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -250,17 +250,17 @@ namespace CSAMS.Migrations
                 name: "UserReviews",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", maxLength: 11, nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserReviewer = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    UserTarget = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    ReviewID = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    AssignmentID = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    Type = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Label = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Answer = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserReviewer = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
+                    UserTarget = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
+                    ReviewID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
+                    AssignmentID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
+                    Type = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Label = table.Column<string>(type: "TEXT", nullable: true),
+                    Answer = table.Column<string>(type: "TEXT", nullable: true),
+                    Comment = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -295,15 +295,15 @@ namespace CSAMS.Migrations
                 name: "UserSubmissions",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", maxLength: 11, nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserID = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    AssignmentID = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    SubmissionID = table.Column<int>(type: "int", maxLength: 11, nullable: false),
-                    Type = table.Column<string>(type: "VARCHAR(64)", maxLength: 64, nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Answer = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
+                    AssignmentID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
+                    SubmissionID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
+                    Type = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Answer = table.Column<string>(type: "TEXT", nullable: true),
+                    Comment = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

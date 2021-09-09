@@ -3,47 +3,46 @@ using System;
 using CSAMS.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CSAMS.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210908213823_Initial Migration")]
-    partial class InitialMigration
+    [Migration("20210909121659_Fix-Typo")]
+    partial class FixTypo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.9")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "5.0.9");
 
             modelBuilder.Entity("CSAMS.Models.Assignments", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(11)
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("CourseID")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<byte[]>("Created")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
+                        .HasColumnType("BLOB");
 
                     b.Property<DateTime>("Deadline")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .HasMaxLength(64)
-                        .HasColumnType("VARCHAR(64)");
+                        .HasColumnType("VARCHAR");
 
                     b.Property<DateTime>("PublishedDate")
                         .HasColumnType("datetime2");
@@ -53,22 +52,19 @@ namespace CSAMS.Migrations
 
                     b.Property<byte>("ReviewEnabled")
                         .HasMaxLength(1)
-                        .HasColumnType("tinyint");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ReviewID")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Reviewers")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("SubmissionID")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
-
-                    b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ID");
 
@@ -86,34 +82,33 @@ namespace CSAMS.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(11)
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("CourseCode")
                         .HasMaxLength(10)
-                        .HasColumnType("VARCHAR(10)");
+                        .HasColumnType("VARCHAR");
 
                     b.Property<string>("CourseName")
                         .HasMaxLength(64)
-                        .HasColumnType("VARCHAR(64)");
+                        .HasColumnType("VARCHAR");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Hash")
                         .HasMaxLength(64)
-                        .HasColumnType("VARCHAR(64)");
+                        .HasColumnType("VARCHAR");
 
                     b.Property<int>("Semester")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Teacher")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Year")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ID");
 
@@ -127,45 +122,44 @@ namespace CSAMS.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(11)
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Choices")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("FormID")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("HasComment")
                         .HasMaxLength(1)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Label")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
-                        .HasColumnType("VARCHAR(256)");
+                        .HasColumnType("VARCHAR");
 
                     b.Property<int>("Priority")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Required")
                         .HasMaxLength(1)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Type")
                         .HasMaxLength(64)
-                        .HasColumnType("VARCHAR(64)");
+                        .HasColumnType("VARCHAR");
 
                     b.Property<int>("Weight")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ID");
 
@@ -178,21 +172,20 @@ namespace CSAMS.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<byte[]>("Created")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
+                        .HasColumnType("BLOB");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
-                        .HasColumnType("VARCHAR(256)");
+                        .HasColumnType("VARCHAR");
 
                     b.Property<string>("Prefix")
                         .HasMaxLength(256)
-                        .HasColumnType("VARCHAR(256)");
+                        .HasColumnType("VARCHAR");
 
                     b.HasKey("ID");
 
@@ -204,20 +197,19 @@ namespace CSAMS.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(11)
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("AssignmentID")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ReviewUserID")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("UserID")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ID");
 
@@ -235,12 +227,11 @@ namespace CSAMS.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(11)
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("FormID")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ID");
 
@@ -254,16 +245,15 @@ namespace CSAMS.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(11)
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Key")
                         .HasMaxLength(256)
-                        .HasColumnType("VARCHAR(256)");
+                        .HasColumnType("VARCHAR");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
-                        .HasColumnType("VARCHAR(256)");
+                        .HasColumnType("VARCHAR");
 
                     b.HasKey("ID");
 
@@ -275,12 +265,11 @@ namespace CSAMS.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(11)
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("FormID")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ID");
 
@@ -294,16 +283,15 @@ namespace CSAMS.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(11)
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("CourseID")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("UserID")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ID");
 
@@ -319,40 +307,39 @@ namespace CSAMS.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(11)
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Answer")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("AssignmentID")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Comment")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Label")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("ReviewID")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Type")
                         .HasMaxLength(64)
-                        .HasColumnType("VARCHAR(64)");
+                        .HasColumnType("VARCHAR");
 
                     b.Property<int>("UserReviewer")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("UserTarget")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ID");
 
@@ -372,33 +359,32 @@ namespace CSAMS.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(11)
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Answer")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("AssignmentID")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Comment")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("SubmissionID")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Type")
                         .HasMaxLength(64)
-                        .HasColumnType("VARCHAR(64)");
+                        .HasColumnType("VARCHAR");
 
                     b.Property<int>("UserID")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ID");
 
@@ -416,12 +402,11 @@ namespace CSAMS.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(11)
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Role")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ID");
 

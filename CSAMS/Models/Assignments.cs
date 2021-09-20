@@ -12,7 +12,7 @@ namespace CSAMS.Models
         [MaxLength(64)]
         [Column(TypeName ="VARCHAR")]
         public string Name { get; set; }
-        public string Text { get; set; }
+        public string Description { get; set; }
         [Timestamp]
         public byte[] Created { get; set; }
         [Column(TypeName ="datetime2")]

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CSAMS.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class resetmigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -153,7 +153,7 @@ namespace CSAMS.Migrations
                     ID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: true),
-                    Text = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
                     Created = table.Column<byte[]>(type: "BLOB", rowVersion: true, nullable: true),
                     PublishedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Deadline = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -302,6 +302,7 @@ namespace CSAMS.Migrations
                     SubmissionID = table.Column<int>(type: "INTEGER", maxLength: 11, nullable: false),
                     Type = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Label = table.Column<string>(type: "TEXT", nullable: true),
                     Answer = table.Column<string>(type: "TEXT", nullable: true),
                     Comment = table.Column<string>(type: "TEXT", nullable: true)
                 },

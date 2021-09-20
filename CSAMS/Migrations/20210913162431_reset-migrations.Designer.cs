@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CSAMS.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210909121659_Fix-Typo")]
-    partial class FixTypo
+    [Migration("20210913162431_reset-migrations")]
+    partial class resetmigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -369,6 +369,9 @@ namespace CSAMS.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Label")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")

@@ -22,13 +22,20 @@ namespace CSAMS.Controllers
         public async Task<ActionResult<ProjectComments[]>> GetProjectComments(int projectID)
         {
             var reviews = await _context.UserReviews.ToArrayAsync();
+
+            if (reviews is null)
+                return BadRequest($"Project with ID {projectID} does not exist or has no commented reviews!");
+
             return GetProjects(reviews, projectID);
         }
 
-        public ProjectComments[] GetProjects(UserReviews[] reviews, int projectID)
+        public static ProjectComments[] GetProjects(UserReviews[] reviews, int projectID)
         {
-            return reviews.Where(r => r.AssignmentID == projectID && r.Comment != null)
+            var proco = reviews.Where(r => r.AssignmentID == projectID && r.Comment != null)
                 .Select(r => new ProjectComments { Target = r.UserTarget, Answer = r.Answer, AnswerType = r.Type, Comment = r.Comment, Reviewer = r.UserReviewer }).ToArray();
+
+            if (proco.Length != 0) return proco;
+            return null;
         }
     }
 }

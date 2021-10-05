@@ -8,14 +8,14 @@ namespace Test_Framework.Methods
 {
     public static class EqualClassChecker
     {
-        public static bool ProjectCommentsEqual(ProjectComments[] expected, ProjectComments[] result)
+        public static bool ProjectCommentsEqual(APIModel[] expected, APIModel[] result)
         {
             if (expected.Length != result.Length)
                 return false;
 
             foreach (var proj in expected)
             {
-                if (result.All(res => proj.AreEqual(res) == false))
+                if (result.All(res => proj.AssertEqual(res) == false))
                     return false;
             }
 

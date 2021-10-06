@@ -2,6 +2,7 @@
 using CSAMS.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,10 +22,15 @@ namespace CSAMS.Controllers
         [HttpGet("project/{projectID}")]
         public async Task<ActionResult<ProjectComments[]>> GetProjectComments(int projectID)
         {
+            var project = await _context.Assignments.Where(A => A.ID == projectID).FirstOrDefaultAsync();
+
+            if (project is null)
+                return NotFound();
+
             var reviews = await _context.UserReviews.ToArrayAsync();
 
             if (reviews is null)
-                return BadRequest($"Project with ID {projectID} does not exist or has no commented reviews!");
+                return BadRequest($"Project with ID {projectID} has no commented reviews!");
 
             return GetProjects(reviews, projectID);
         }

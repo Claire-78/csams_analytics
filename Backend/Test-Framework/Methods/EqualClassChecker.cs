@@ -8,7 +8,7 @@ namespace Test_Framework.Methods
 {
     public static class EqualClassChecker
     {
-        public static bool ProjectCommentsEqual(APIModel[] expected, APIModel[] result)
+        public static bool APIModelEqual(IAPIModel[] expected, IAPIModel[] result)
         {
             if (expected.Length != result.Length)
                 return false;

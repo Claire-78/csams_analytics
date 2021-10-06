@@ -26,14 +26,21 @@ namespace Test_Framework.GlobalStatistics
         public void TestProjectCommentsOne()
         {
             var result = CommentController.GetProjects(TestData.TestData.UserReviewTest, 1);
-            Assert.IsTrue(EqualClassChecker.ProjectCommentsEqual(ExpectedResultOne, result));
+            Assert.IsTrue(EqualClassChecker.APIModelEqual(ExpectedResultOne, result));
         }
 
         [TestMethod]
         public void TestProjectCommentsTwo()
         {
             var result = CommentController.GetProjects(TestData.TestData.UserReviewTest, 2);
-            Assert.IsTrue(EqualClassChecker.ProjectCommentsEqual(ExpectedResultTwo, result));
+            Assert.IsTrue(EqualClassChecker.APIModelEqual(ExpectedResultTwo, result));
+        }
+
+        [TestMethod]
+        public void TestProjectCommentsFail()
+        {
+            var result = CommentController.GetProjects(TestData.TestData.UserReviewTest, 1);
+            Assert.IsFalse(EqualClassChecker.APIModelEqual(ExpectedResultTwo, result));
         }
 
         [TestMethod]

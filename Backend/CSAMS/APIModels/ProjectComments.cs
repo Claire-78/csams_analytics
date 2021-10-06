@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CSAMS.APIModels
 {
-    public class ProjectComments : APIModel
+    public class ProjectComments : IAPIModel
     {
         public int Target { get; set; }
         public int Reviewer { get; set; }
@@ -13,7 +13,7 @@ namespace CSAMS.APIModels
         public string Answer { get; set; }
         public string Comment { get; set; }
 
-        public override bool AssertEqual(APIModel other)
+        public bool AssertEqual(IAPIModel other)
         {
             var otherProject = other as ProjectComments;
             return (Target == otherProject.Target &&

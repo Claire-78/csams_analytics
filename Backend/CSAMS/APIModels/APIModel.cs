@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace CSAMS.APIModels
 {
-    public class APIModel
+    public interface IAPIModel
     {
-        public virtual bool AssertEqual(APIModel other) { return false; }
+        public bool AssertEqual(IAPIModel other);
     }
 }

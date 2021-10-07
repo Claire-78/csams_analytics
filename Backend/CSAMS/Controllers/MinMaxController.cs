@@ -22,7 +22,7 @@ namespace CSAMS.Controllers
         [HttpGet("userReviews")]
         public async Task<ActionResult<UserReviews[]>> GetUserReviews()
         {
-            return await _context.UserReviews.Where(ur => ur.Type != "radio").ToArrayAsync();
+            return await _context.UserReviews.Where(ur => ur.Type == "radio").Include(ur => ur.Assignment).Where(ur => ur.AssignmentID != 1).ToArrayAsync();
         }
 
 
@@ -54,7 +54,6 @@ namespace CSAMS.Controllers
 
         public UserReviews GetMax(UserReviews[] list, string formPrefix)
         {
-            Console.Out.WriteLine("Coucou");
             UserReviews minUR = new UserReviews();
             int minScore = -1000;
             foreach (UserReviews UR in list)

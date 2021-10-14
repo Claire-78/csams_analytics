@@ -10,9 +10,9 @@ export const MenuItems=[
         cName:'nav-links'
     },
     {
-        title:'Min Max',
-        url:'http://localhost:3000/Max',
-        cName:'nav-links'
+        title: 'Statistics',
+        url: 'http://localhost:3000/Statistics',
+        cName: 'nav-links'
     },
     {
         title:'Comments',

@@ -6,7 +6,7 @@ import PostListAgain from './components/PostListAgain';
 import Navbar from './components/Navbar/Navbar'
 
 import Comments from './components/Comments';
-import MinMax from './components/MinMax';
+import Statistics from './components/Statistics';
 
 function App() {
   return (
@@ -34,13 +34,11 @@ function App() {
     </Route>
 
     <Route path='/Comments' >
-    <Comments />
-
+        <Comments />
     </Route>
 
-    <Route path='/Max' >
-    <MinMax/>
-
+    <Route path='/Statistics' >
+        <Statistics />
     </Route>
 
     </Router>

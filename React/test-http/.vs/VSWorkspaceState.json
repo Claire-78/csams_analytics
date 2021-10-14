@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
     "\\src",
     "\\src\\components",
     "\\src\\components\\Navbar"
   ],
+  "SelectedNode": "\\src\\components\\Comments.js",
   "PreviewInSolutionExplorer": false
 }

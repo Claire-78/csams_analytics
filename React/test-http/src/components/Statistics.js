@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import MinMaxList from './MinMaxList'
+import StatisticsList from './StatisticsList'
 
-class MinMax extends Component {
+class Statistics extends Component {
 	constructor(props) {
 		super(props)
 
@@ -20,7 +20,7 @@ class MinMax extends Component {
 
 	componentDidMount() {
 		axios
-			.get('https://localhost:44344/api/MinMax/userReviewsMinMax')
+			.get('https://localhost:44344/api/statistics/userReviewsStatistics')
 			.then(response => {
 				console.log(response)
 				this.setState({ posts: response.data })
@@ -33,15 +33,16 @@ class MinMax extends Component {
 
 	render() {
 		const { posts, errorMsg } = this.state
-		const minmaxlist=posts.map(post => (
-			<MinMaxList key={post.id} post={post}></MinMaxList >
+		const statisticslist=posts.map(post => (
+			<StatisticsList key={post.id} post={post}></StatisticsList >
 
 		))
 		return (
 			<div>
-                    <h1> 
-                        </h1> 
-               {minmaxlist}
+				<h1>
+					Min, Max, Mean, Median, Q1, Q3, Standard Deviation
+				</h1>
+               {statisticslist}
 				
         {errorMsg ? <div>{errorMsg}</div> : null}
 			</div>
@@ -49,4 +50,4 @@ class MinMax extends Component {
 	}
 }
 
-export default MinMax
+export default Statistics

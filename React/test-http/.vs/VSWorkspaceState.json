@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\components"
+    "\\src\\components",
+    "\\src\\components\\Navbar"
   ],
-  "SelectedNode": "\\src\\components\\MinMax.js",
   "PreviewInSolutionExplorer": false
 }

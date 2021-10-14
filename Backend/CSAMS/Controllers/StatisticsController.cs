@@ -20,10 +20,10 @@ namespace CSAMS.Controllers
         }
 
         [HttpGet("userReviewsStatistics")]
-        public async Task<ActionResult<float[]>> GetUserReviewsStatistics()
+        public async Task<ActionResult<String[]>> GetUserReviewsStatistics()
         {
             UserReviews[] all = await _context.UserReviews.Include(ur => ur.Review).Include(ur => ur.Review.Form).Include(ur => ur.Target).Include(ur => ur.Target.UserRole).Include(ur => ur.Reviewer).Include(ur => ur.Reviewer.UserRole).ToArrayAsync();
-            float[] array = new float[] { (float)Convert.ToInt32(GetMin(all).Answer), (float)Convert.ToInt32(GetMax(all).Answer), GetMean(all), GetMedian(all), GetQ1(all), GetQ3(all), GetStandardDeviation(all) };
+            String[] array = new String[] { "Min: " + GetMin(all).Answer, "Max: "+GetMax(all).Answer,"Mean: " + GetMean(all), "Median: " + GetMedian(all), "Q1: " + GetQ1(all), "Q3: " + GetQ3(all), "Standard Deviation: " + GetStandardDeviation(all) };
             return array;
         }
 

@@ -33,14 +33,14 @@ class Statistics extends Component {
 
 	render() {
 		const { posts, errorMsg } = this.state
-		const statisticslist=posts.map(post => (
+		const statisticslist = posts.map(post => (
 			<StatisticsList key={post.id} post={post}></StatisticsList >
 
 		))
 		return (
 			<div>
 				<h1>
-					Min, Max, Mean, Median, Q1, Q3, Standard Deviation
+					Statistics
 				</h1>
                {statisticslist}
 				

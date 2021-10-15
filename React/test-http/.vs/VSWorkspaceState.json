@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
     "\\src",
     "\\src\\components"
   ],
-  "SelectedNode": "\\src\\components\\MinMax.js",
   "PreviewInSolutionExplorer": false
 }

@@ -35,7 +35,7 @@ handleClick=()=>{
                    })}
                    
                </ul>
-               <Button>Sing up</Button>
+               <Button>Sign up</Button>
            </nav>
         )
     }

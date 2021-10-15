@@ -16,7 +16,7 @@ class Assignments extends Component {
 
     componentDidMount() {
         axios
-            .get('https://localhost:5001/api/Assignment')
+            .get('https://localhost:44344/api/Assignment')
             .then(response => {
                 console.log(response)
                 this.setState({ posts: response.data })

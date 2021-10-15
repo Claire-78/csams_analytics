@@ -23,6 +23,7 @@ namespace CSAMS.Controllers
 
         public async Task<AssignmentModel[]> Get()
         {
+            Console.Write("Test");
             return await _context.Assignments.Include(a => a.Course).Select(a => new AssignmentModel { ID = a.ID, Name = a.Name, Deadline = a.Deadline, ReviewDeadline = a.ReviewDeadline, Course = a.Course.CourseName }).ToArrayAsync();
         }
     }

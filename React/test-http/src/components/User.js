@@ -6,7 +6,7 @@ function UserList({post}) {
         <div>
     	
     
-		 <div key={post.id} style={{border: 'solid'}}>{post.id} ,  {post.userRole.name}
+		 <div key={post.id} style={{border: 'solid'}}>{post.id} ,  {post.userRole.name} | <a href={"http://localhost:3000/Comment/reviewer/" + post.id}>Comments</a>
          
         </div>
        

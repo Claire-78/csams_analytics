@@ -21,13 +21,19 @@ export const MenuItems=[
     },
     {
         title:'Comments',
-        url:'http://localhost:3000/Comments',
+        url:'http://localhost:3000/Comments/All',
         cName:'nav-links'
     },
     {
         title:'Post',
         url:'http://localhost:3000/Post',
         cName:'nav-links'
+    },
+    {
+        title: 'Assignments',
+        url: 'http://localhost:3000/Assignments',
+        cName: 'nav-links'
+
     },
     {
         title:'Sign up',

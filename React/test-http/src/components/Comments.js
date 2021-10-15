@@ -1,52 +1,45 @@
-import React, { Component } from 'react'
+import React, {useState,useEffect } from 'react'
 import axios from 'axios'
-import CommentList from './CommentList'
+//import CommentList from './CommentList'
+import Posts from './Pagination/Posts'
+import { Pagination } from './Pagination/Pagination'
 
-
-class Comments extends Component {
-	constructor(props) {
-		super(props)
-
-		this.state = {
-      posts: [],
-      errorMsg: ''
-		}
-	}
-
-
-    clickHandler(){
-        
-        
-    }
-
-	componentDidMount() {
-		axios
-			.get('https://localhost:44344/api/Basic/comments')
-			.then(response => {
-				console.log(response)
-				this.setState({ posts: response.data })
-			})
-			.catch(error => {
-        console.log(error)
-        this.setState({errorMsg: 'Error retrieving data'})
-			})
-	}
-
-	render() {
-		const { posts, errorMsg } = this.state
-		const commentlist=posts.map(post => (
-			<CommentList key={post.id} post={post}></CommentList >
-
-		))
-		return (
-			<div>
-				   ID   ,  Reviwer, Assingment
-               {commentlist}
-				
-        {errorMsg ? <div>{errorMsg}</div> : null}
-			</div>
-		)
-	}
-}
-
-export default Comments
+const Comments = () => {
+	const [posts, setPosts] = useState([]);
+	const [loading, setLoading] = useState(false);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [postsPerPage] = useState(15);
+  
+	useEffect(() => {
+	  const fetchPosts = async () => {
+		setLoading(true);
+		const res = await axios.get('https://localhost:44344/api/Basic/comments');
+		setPosts(res.data);
+		setLoading(false);
+	  };
+  
+	  fetchPosts();
+	}, []);
+  
+	// Get current posts
+	const indexOfLastPost = currentPage * postsPerPage;
+	const indexOfFirstPost = indexOfLastPost - postsPerPage;
+	const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  
+	// Change page
+	const paginate = pageNumber => setCurrentPage(pageNumber);
+  
+	return (
+	  <div className='container mt-5'>
+		<h1 className='text-primary mb-3'>To infinity and beyond</h1>
+		<Posts posts={currentPosts} loading={loading} />
+		<Pagination
+		  postsPerPage={postsPerPage}
+		  totalPosts={posts.length}
+		  paginate={paginate}
+		/>
+	  </div>
+	);
+  };
+  
+  export default Comments;

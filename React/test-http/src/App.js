@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar'
 
 import Comments from './components/Comments';
 import MinMax from './components/MinMax';
+import PostForm from './components/PostForm';
 
 function App() {
   return (
@@ -35,6 +36,11 @@ function App() {
 
     <Route path='/Comments' >
     <Comments />
+
+    </Route>
+
+    <Route path='/Post' >
+    <PostForm />
 
     </Route>
 

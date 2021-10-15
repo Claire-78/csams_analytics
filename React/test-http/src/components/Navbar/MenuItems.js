@@ -20,6 +20,11 @@ export const MenuItems=[
         cName:'nav-links'
     },
     {
+        title:'Post',
+        url:'http://localhost:3000/Post',
+        cName:'nav-links'
+    },
+    {
         title:'Sign up',
         url:'#',
         cName:'nav-links-mobile'

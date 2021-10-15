@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component/*,useState,useEffect*/ } from 'react'
 import axios from 'axios'
 import UserList from './User'
 
@@ -8,15 +8,12 @@ class PostListAgain extends Component {
 
 		this.state = {
       posts: [],
-      errorMsg: ''
+
+      errorMsg: '',
+	  ShowAll: true
 		}
+
 	}
-
-
-    clickHandler(){
-        
-        
-    }
 
 	componentDidMount() {
 		axios
@@ -37,8 +34,10 @@ class PostListAgain extends Component {
 			<UserList key={post.id} post={post}></UserList >
 
 		))
+
 		return (
-			<div>
+			<div key='0' style={{border: 'solid', textAlign:'center'}} >
+			
 				   ID   ,  Title
                {userlist}
 				

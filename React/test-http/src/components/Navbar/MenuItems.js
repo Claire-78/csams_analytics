@@ -15,8 +15,18 @@ export const MenuItems=[
         cName: 'nav-links'
     },
     {
+        title:'Min Max',
+        url:'http://localhost:3000/Max',
+        cName:'nav-links'
+    },
+    {
         title:'Comments',
         url:'http://localhost:3000/Comments',
+        cName:'nav-links'
+    },
+    {
+        title:'Post',
+        url:'http://localhost:3000/Post',
         cName:'nav-links'
     },
     {

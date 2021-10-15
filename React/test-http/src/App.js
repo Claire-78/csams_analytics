@@ -6,7 +6,9 @@ import PostListAgain from './components/PostListAgain';
 import Navbar from './components/Navbar/Navbar'
 
 import Comments from './components/Comments';
+import Assignments from './components/Assignments'
 import MinMax from './components/MinMax';
+import AssiComments from './components/AssiComments';
 
 function App() {
   return (
@@ -36,6 +38,13 @@ function App() {
     <Route path='/Comments' >
     <Comments />
 
+    </Route>
+
+    <Route path='/Assignments' >
+    <Assignments />
+    </Route>
+
+          <Route path='/Comment/Project/:id' component={AssiComments}>
     </Route>
 
     <Route path='/Max' >

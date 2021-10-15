@@ -18,20 +18,20 @@ class AssiComments extends Component {
         const { id } = this.props.match.params
         console.log(id)
         axios
-            .get('https://localhost:5001/api/comment/project/' + id)
+            .get('https://localhost:44344/api/comment/project/' + id)
             .then(response => {
                 console.log(response)
                 this.setState({ posts: response.data })
             })
             .catch(error => {
                 console.log(error)
-                this.setState({ errorMsg: 'Unexpected Error' })
+                this.setState({ errorMsg: error.response.data })
             })
     }
 
     render() {
         const { posts, errorMsg } = this.state
-        if (posts != []) {
+        if (errorMsg == '') {
             console.log(errorMsg)
             const assiComments = posts.map(post => (
                 <AssiCommentsList key={post.target} post={post}></AssiCommentsList >
@@ -47,7 +47,7 @@ class AssiComments extends Component {
         else {
             return (
                 <div>
-                    errorMsg
+                    {errorMsg}
                 </div>
             )
         }

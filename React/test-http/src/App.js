@@ -9,6 +9,7 @@ import Comments from './components/Comments';
 import Assignments from './components/Assignments'
 import MinMax from './components/MinMax';
 import AssiComments from './components/AssiComments';
+import Statistics from './components/Statistics';
 
 function App() {
   return (
@@ -36,8 +37,7 @@ function App() {
     </Route>
 
     <Route path='/Comments' >
-    <Comments />
-
+        <Comments />
     </Route>
 
     <Route path='/Assignments' >
@@ -50,6 +50,8 @@ function App() {
     <Route path='/Max' >
     <MinMax/>
 
+    <Route path='/Statistics' >
+        <Statistics />
     </Route>
 
     </Router>

@@ -40,7 +40,7 @@ class Comments extends Component {
 		))
 		return (
 			<div>
-				   ID   ,  Reviwer, Assingment
+				   ID   ,  Reviewer, Assignment
                {commentlist}
 				
         {errorMsg ? <div>{errorMsg}</div> : null}

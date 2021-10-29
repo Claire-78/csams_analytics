@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import AssignmentList from './AssignmentList'
 
 class Assignments extends Component {
     constructor(props) {
@@ -29,16 +28,29 @@ class Assignments extends Component {
 
     render() {
         const { posts, errorMsg } = this.state
-        const assignmentList = posts.map(post => (
-            <AssignmentList key={post.id} post={post}></AssignmentList >
-
-        ))
+        let n = 0
         return (
-            <div>
-                Assignment  ,  Course  ,  Deadline  ,  ReviewDeadline
-                {assignmentList}
+            <div style={{ textAlign: 'center' }}>
+                <tr style={{ display: 'flex', justifyContent: 'center' }}>
+                    <td style={{ border: "1px solid rgb(0, 0, 0)", width: 300 }}>Assignment</td>
+                    <td style={{ border: "1px solid rgb(0, 0, 0)", width: 300 }}>Course</td>
+                    <td style={{ border: "1px solid rgb(0, 0, 0)", width: 200 }}>Deadline</td>
+                    <td style={{ border: "1px solid rgb(0, 0, 0)", width: 200 }}>Review Deadline</td>
+                    <td style={{ border: "1px solid rgb(0, 0, 0)", width: 250 }}>Review Comments</td>
+                </tr>
+                {posts.map(row => (
+                    <tr key={row.id} style={{ display: 'flex', justifyContent: 'center' }}>
+                        <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 300 }}>{row.name}</td>
+                        <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 300 }}>{row.course}</td>
+                        <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 200 }}>{row.deadline}</td>
+                        <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 200 }}>{row.reviewDeadline}</td>
+                        <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n++ % 2) === 1 ? '#aae' : '#dde', width: 250 }}><a href={"http://localhost:3000/Comment/Project/" + row.id}>Comments</a></td>
+                    </tr>
+                ))}
 
                 {errorMsg ? <div>{errorMsg}</div> : null}
+
+
             </div>
         )
     }

@@ -14,6 +14,7 @@ import AssiComments from './components/AssiComments';
 import Statistics from './components/Statistics';
 import PostForm from './components/PostForm';
 import ReviewerComments from './components/ReviewerComments';
+import Filters from './components/Filters';
 
 function App() {
     return (
@@ -37,7 +38,6 @@ function App() {
             </div>
             <Route path='/User' >
                 <PostListAgain />
-
             </Route>
 
             
@@ -65,6 +65,10 @@ function App() {
 
             <Route path='/Statistics' >
                 <Statistics />
+            </Route>
+
+            <Route path='/Filters' >
+                <Filters />
             </Route>
 
         </Router>

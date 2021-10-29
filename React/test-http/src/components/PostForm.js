@@ -19,20 +19,21 @@ submitHandler=(e)=>{
     console.log(this.state)
    
  
-    axios.post('https://localhost:44344/api/sample/user',this.state)
+    axios.post('https://localhost:44344/api/sample/post', this.state, {
+        headers: {
+            'content-type': 'application/json',
+            "Access-Control-Allow-Origin": "*"
+        }
+    })
     .then(Response=> {
         console.log(Response)
     })
     .catch(error=>{
         console.log(error)
     })
+     }
 
 
-  
-  
-
-
-}
     render() {
         const{id,role}=this.state
         return (

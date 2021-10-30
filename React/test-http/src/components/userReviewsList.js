@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-function FullCommentList({ post }) {
+function UserReviewsList({ post }) {
     return (
         <div>
 
@@ -16,4 +16,4 @@ function FullCommentList({ post }) {
     )
 }
 
-export default FullCommentList
+export default UserReviewsList

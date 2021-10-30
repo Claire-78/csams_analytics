@@ -31,14 +31,28 @@ namespace CSAMS.Controllers
                 userReviews = userReviews.Where(ur => ur.Assignment.Name == filter.assignment).ToArray();
             }
 
-            if (filter.reviewerID != "")//Check if it's a number
+            if (filter.reviewerID != "")
             {
-                userReviews = userReviews.Where(ur => ur.UserReviewer == Convert.ToInt32(filter.reviewerID)).ToArray();
+                try
+                {
+                    userReviews = userReviews.Where(ur => ur.UserReviewer == Convert.ToInt32(filter.reviewerID)).ToArray();
+                }
+                catch (FormatException)
+                {
+                    return BadRequest($"'{filter.reviewerID}' is not a valid userID!");
+                }
             }
 
-            if (filter.targetID != "")//Check if it's a number
+            if (filter.targetID != "")
             {
-                userReviews = userReviews.Where(ur => ur.UserTarget == Convert.ToInt32(filter.targetID)).ToArray();
+                try
+                {
+                    userReviews = userReviews.Where(ur => ur.UserTarget == Convert.ToInt32(filter.targetID)).ToArray();
+                }
+                catch (FormatException)
+                {
+                    return BadRequest($"'{filter.targetID}' is not a valid userID!");
+                }
             }
             return userReviews;
         }
@@ -72,14 +86,28 @@ namespace CSAMS.Controllers
                 userReviews = userReviews.Where(ur => ur.Assignment.Name == filter.assignment).ToArray();
             }
 
-            if (filter.reviewerID != "")//Check if it's a number
+            if (filter.reviewerID != "")
             {
-                userReviews = userReviews.Where(ur => ur.UserReviewer == Convert.ToInt32(filter.reviewerID)).ToArray();
+                try
+                {
+                    userReviews = userReviews.Where(ur => ur.UserReviewer == Convert.ToInt32(filter.reviewerID)).ToArray();
+                }
+                catch (FormatException)
+                {
+                    return BadRequest($"'{filter.reviewerID}' is not a valid userID!");
+                }
             }
 
-            if (filter.targetID != "")//Check if it's a number
+            if (filter.targetID != "")
             {
-                userReviews = userReviews.Where(ur => ur.UserTarget == Convert.ToInt32(filter.targetID)).ToArray();
+                try
+                {
+                    userReviews = userReviews.Where(ur => ur.UserTarget == Convert.ToInt32(filter.targetID)).ToArray();
+                }
+                catch (FormatException)
+                {
+                    return BadRequest($"'{filter.targetID}' is not a valid userID!");
+                }
             }
 
             //Return corresponding Statistics

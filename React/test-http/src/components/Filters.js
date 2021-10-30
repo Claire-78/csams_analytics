@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import FullCommentList from './FullCommentList'
+import UserReviewsList from './userReviewsList'
 import StatisticsList from './StatisticsList'
-import UserList from './PostListAgain'
 
 class Filters extends Component {
 	constructor(props) {
@@ -14,7 +13,8 @@ class Filters extends Component {
 			targetId: '',
 			userReviews: [],
 			statistics: [],
-			errorMsg: '',
+			errorMsg1: '',
+			errorMsg2: '',
 		}
 	}
 
@@ -35,10 +35,12 @@ class Filters extends Component {
 			.then(Response => {
 				console.log(Response)
 				this.setState({ userReviews: Response.data })
+				this.setState({ errorMsg2: '' })
 			})
 			.catch(error => {
 				console.log(error)
-				this.setState({ errorMsg: 'Error' })
+				this.setState({ userReviews: [] })
+				this.setState({ errorMsg2: error.response.data })
 			})
 
 		axios
@@ -46,10 +48,12 @@ class Filters extends Component {
 				.then(Response => {
 					console.log(Response)
 					this.setState({ statistics: Response.data })
+					this.setState({ errorMsg1: '' })
 				})
 				.catch(error => {
 					console.log(error)
-					this.setState({ errorMsg: 'Error' })
+					this.setState({ statistics: [] })
+					this.setState({ errorMsg1: error.response.data })
 				})
 
 	}
@@ -80,9 +84,9 @@ class Filters extends Component {
 
 
 	render() {
-		const { assignment, reviewerId, targetId, userReviews,statistics, errorMsg } = this.state
+		const { assignment, reviewerId, targetId, userReviews, statistics, errorMsg1, errorMsg2 } = this.state
 		const userReviewsList = userReviews.map(post => (
-			<FullCommentList key={post.id} post={post}></FullCommentList >
+			<UserReviewsList key={post.id} post={post}></UserReviewsList>
 		))
 		const statisticslist = statistics.map(post => (
 			<StatisticsList key={post.id} post={post}></StatisticsList >
@@ -114,16 +118,16 @@ class Filters extends Component {
 						Statistics
 					</h1>
 					{statisticslist}
+					{errorMsg1 ? <div>{errorMsg1}</div> : null}
 				</div>
 
 				<div>
 					<h1>
 						Comments
 					</h1>
-					ID, Name, Assignment Name, ReviewerID, TargetID
+					{errorMsg2 ? <div>{errorMsg2}</div> : "ID, Name, Assignment Name, ReviewerID, TargetID"}
 					{userReviewsList}
 				</div>
-				{errorMsg ? <div>{errorMsg}</div> : null}
 			</div>
 		)
 	}

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import AssiCommentsList from './AssiCommentsList'
 
 class ReviewerComments extends Component {
     constructor(props) {
@@ -33,20 +32,31 @@ class ReviewerComments extends Component {
         const { posts, errorMsg } = this.state
         if (errorMsg == '') {
             console.log(errorMsg)
-            const assiComments = posts.map(post => (
-                <AssiCommentsList key={post.target} post={post}></AssiCommentsList >
-
-            ))
+            let n = 0
             return (
-                <div>
-                    Target  ,  Reviewer  ,  Answer Type  ,  Answer  ,  Comment
-                    {assiComments}
+                <div style={{ textAlign: 'center' }}>
+                    <tr style={{ display: 'flex', justifyContent: 'center' }}>
+                        <td style={{ border: "1px solid rgb(0, 0, 0)", width: 100 }}>Target</td>
+                        <td style={{ border: "1px solid rgb(0, 0, 0)", width: 100 }}>Reviewer</td>
+                        <td style={{ border: "1px solid rgb(0, 0, 0)", width: 150 }}>Answer Type</td>
+                        <td style={{ border: "1px solid rgb(0, 0, 0)", width: 100 }}>Answer</td>
+                        <td style={{ border: "1px solid rgb(0, 0, 0)", width: 1000 }}>Comment</td>
+                    </tr>
+                    {posts.map(row => (
+                        <tr style={{ display: 'flex', justifyContent: 'center' }}>
+                            <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 100 }}>{row.target}</td>
+                            <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 100 }}>{row.reviewer}</td>
+                            <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 150 }}>{row.answerType}</td>
+                            <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 100 }}>{row.answer}</td>
+                            <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n++ % 2) === 1 ? '#aae' : '#dde', width: 1000 }}>{row.comment}</td>
+                        </tr>
+                    ))}
                 </div>
             )
         }
         else {
             return (
-                <div>
+                <div style={{ textAlign: 'center', color: 'red', fontSize: 50 }}>
                     {errorMsg}
                 </div>
             )

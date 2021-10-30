@@ -6,7 +6,7 @@ function UserReviewsList({ post }) {
         <div>
 
 
-            <div key={post.id} style={{ border: 'solid' }}>{post.id} | {post.name} | {post.assignment.name} | {post.userReviewer} | {post.userTarget}
+            <div key={post.id} style={{ border: 'solid' }}>{post.id} | {post.name} | {post.assignment.name} | {post.userReviewer} | {post.userTarget} | {post.answer}
 
 
             </div>

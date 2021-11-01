@@ -14,6 +14,7 @@ import AssiComments from './components/AssiComments';
 import Statistics from './components/Statistics';
 import PostForm from './components/PostForm';
 import ReviewerComments from './components/ReviewerComments';
+import Top from './components/Top';
 
 function App() {
     return (
@@ -65,6 +66,10 @@ function App() {
 
             <Route path='/Statistics' >
                 <Statistics />
+            </Route>
+
+            <Route path='/Top' >
+                <Top />
             </Route>
 
         </Router>

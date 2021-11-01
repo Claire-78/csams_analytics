@@ -28,12 +28,13 @@ namespace CSAMS
                     builder =>
                     {
                         builder.WithOrigins("http://localhost:3000")
-                       //  .WithExposedHeaders("content-type");
+                        // .WithExposedHeaders("content-type")
                         // .AllowAnyOrigin()
                         // .AllowAnyMethod()
                           .AllowAnyHeader()
-                        //.AllowAnyHeader()
-                        // .WithMethods("POST",  "GET")
+                       //   .AllowAnyOrigin()
+                       // .AllowAnyHeader()
+                       //  .WithMethods("POST",  "GET")
                         ;
 
                     });

@@ -3,13 +3,16 @@ import axios from 'axios'
 //import CommentList from './CommentList'
 import Posts from './Pagination/Posts'
 import { Pagination } from './Pagination/Pagination'
+import ReactPaginate from "react-paginate";
 
 const Comments = () => {
 	const [posts, setPosts] = useState([]);
 	const [loading, setLoading] = useState(false);
-	const [currentPage, setCurrentPage] = useState(1);
-	const [postsPerPage] = useState(15);
   
+	const [currentPage, setCurrentPage] = useState(0);
+	const [postsPerPage] = useState(15);
+	//const pagesVisited = currentPage * postsPerPage;
+	//const [pageNumber, setPageNumber] = useState(0);
 	useEffect(() => {
 	  const fetchPosts = async () => {
 		setLoading(true);
@@ -22,21 +25,43 @@ const Comments = () => {
 	}, []);
   
 	// Get current posts
-	const indexOfLastPost = currentPage * postsPerPage;
-	const indexOfFirstPost = indexOfLastPost - postsPerPage;
-	const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+	
+	//const [pageNumber, setPageNumber] = useState(0);
+
+	//const postsPerPage = 15;
+	const pagesVisited = currentPage * postsPerPage;
+
   
-	// Change page
-	const paginate = pageNumber => setCurrentPage(pageNumber);
+	const displayposts = posts
+	  .slice(pagesVisited, pagesVisited + postsPerPage)
+	  .map((post) => {
+		return (
+			<li key={post.id} className='list-group-item' style={{border:'solid'}}>
+			{post.id} | {post.userReviewer} | {post.assignment.description} 
+		</li>
+		);
+	  });
   
+	const pageCount = Math.ceil(posts.length / postsPerPage);
+  
+	const changePage = ({ selected }) => {
+		setCurrentPage(selected);
+	};
+	console.log(pagesVisited, ' pages');
 	return (
-	  <div className='container mt-5'>
-		<h1 className='text-primary mb-3'>To infinity and beyond</h1>
-		<Posts posts={currentPosts} loading={loading} />
-		<Pagination
-		  postsPerPage={postsPerPage}
-		  totalPosts={posts.length}
-		  paginate={paginate}
+	
+	  <div className="App">
+		{displayposts}
+		<ReactPaginate
+		  previousLabel={"Previous"}
+		  nextLabel={"Next"}
+		  pageCount={pageCount}
+		  onPageChange={changePage}
+		  containerClassName={"paginationBttns"}
+		  previousLinkClassName={"previousBttn"}
+		  nextLinkClassName={"nextBttn"}
+		  disabledClassName={"paginationDisabled"}
+		  activeClassName={"paginationActive"}
 		/>
 	  </div>
 	);

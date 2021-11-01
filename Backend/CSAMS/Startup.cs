@@ -27,9 +27,20 @@ namespace CSAMS
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:3000");
+                        builder.WithOrigins("http://localhost:3000")
+                       //  .WithExposedHeaders("content-type");
+                        // .AllowAnyOrigin()
+                        // .AllowAnyMethod()
+                          .AllowAnyHeader()
+                        //.AllowAnyHeader()
+                        // .WithMethods("POST",  "GET")
+                        ;
+
                     });
             });
+        
+        
+        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,10 +50,11 @@ namespace CSAMS
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseHttpsRedirection();
             app.UseRouting();
+       
             app.UseCors(MyAllowSpecificOrigins);
-
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

@@ -32,19 +32,15 @@ class Top extends Component {
         return (
             <div style={{ textAlign: 'center' }}>
                 <tr style={{ display: 'flex', justifyContent: 'center' }}>
-                    <td style={{ border: "1px solid rgb(0, 0, 0)", width: 300 }}>Assignment</td>
-                    <td style={{ border: "1px solid rgb(0, 0, 0)", width: 300 }}>Course</td>
-                    <td style={{ border: "1px solid rgb(0, 0, 0)", width: 200 }}>Deadline</td>
-                    <td style={{ border: "1px solid rgb(0, 0, 0)", width: 200 }}>Review Deadline</td>
-                    <td style={{ border: "1px solid rgb(0, 0, 0)", width: 250 }}>Review Comments</td>
+                    <td style={{ border: "1px solid rgb(0, 0, 0)", width: 300 }}>Grade</td>
+                    <td style={{ border: "1px solid rgb(0, 0, 0)", width: 300 }}>Assignment name</td>
+                    <td style={{ border: "1px solid rgb(0, 0, 0)", width: 200 }}>Assignment ID</td>
                 </tr>
                 {posts.map(row => (
                     <tr key={row.id} style={{ display: 'flex', justifyContent: 'center' }}>
-                        <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 300 }}>{row.name}</td>
-                        <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 300 }}>{row.course}</td>
-                        <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 200 }}>{row.deadline}</td>
-                        <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 200 }}>{row.reviewDeadline}</td>
-                        <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n++ % 2) === 1 ? '#aae' : '#dde', width: 250 }}><a href={"http://localhost:3000/Comment/Project/" + row.id}>Comments</a></td>
+                        <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 300 }}>{row.grade}</td>
+                        <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 300 }}>{row.assignmentName}</td>
+                        <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 200 }}>{row.assignmentID}</td>
                     </tr>
                 ))}
 
@@ -52,6 +48,7 @@ class Top extends Component {
 
 
             </div>
+
         )
     }
 }

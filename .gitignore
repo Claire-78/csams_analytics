@@ -165,4 +165,4 @@ node_modules/
 package-lock.json
 
 # Visual Studio cache/options directory
-*.vs
+*/.vs

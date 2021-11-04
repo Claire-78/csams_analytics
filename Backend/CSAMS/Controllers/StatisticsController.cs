@@ -24,7 +24,7 @@ namespace CSAMS.Controllers
         [HttpPost("userReviewsFiltered")]
         public async Task<ActionResult<UserReviews[]>> PostUserReviews(Filter filter)
         {
-            UserReviews[] userReviews = await _context.UserReviews.Include(ur => ur.Assignment).Where(ur => ur.Type == "radio").ToArrayAsync();
+            UserReviews[] userReviews = await _context.UserReviews.Include(ur => ur.Assignment).Where(ur => ur.Type == "radio").Where(ur => ur.Answer != null).ToArrayAsync();
 
             if (filter.assignment != "")
             {
@@ -54,6 +54,12 @@ namespace CSAMS.Controllers
                     return BadRequest($"'{filter.targetID}' is not a valid userID!");
                 }
             }
+
+            if (userReviews.Length == 0)
+            {
+                return BadRequest($"There are no user reviews corresponding to these values!");
+            }
+
             return userReviews;
         }
 
@@ -61,14 +67,23 @@ namespace CSAMS.Controllers
         [HttpGet("userReviews")]
         public async Task<ActionResult<UserReviews[]>> GetUserReviews()
         {
-             return await _context.UserReviews.Include(ur => ur.Assignment).Where(ur => ur.Type == "radio").ToArrayAsync();
+            UserReviews[] userReviews = await _context.UserReviews.Include(ur => ur.Assignment).Where(ur => ur.Type == "radio").Where(ur => ur.Answer != null).ToArrayAsync();
+            if (userReviews.Length == 0)
+            {
+                return BadRequest($"There are no user reviews corresponding to these values!");
+            }
+            return userReviews;
         }
 
 
         [HttpGet("userReviewsStatistics")]
         public async Task<ActionResult<String[]>> GetUserReviewsStatistics()
         {
-            UserReviews[] all = await _context.UserReviews.Where(ur => ur.Type == "radio").ToArrayAsync();
+            UserReviews[] all = await _context.UserReviews.Where(ur => ur.Type == "radio").Where(ur => ur.Answer != null).ToArrayAsync();
+            if (all.Length == 0)
+            {
+                return BadRequest($"There are no user reviews corresponding to these values!");
+            }
             String[] array = new String[] { "Min: " + GetMin(all).Answer, "Max: "+GetMax(all).Answer,"Mean: " + GetMean(all), "Median: " + GetMedian(all), "Q1: " + GetQ1(all), "Q3: " + GetQ3(all), "Standard Deviation: " + GetStandardDeviation(all) };
             return array;
         }
@@ -78,7 +93,7 @@ namespace CSAMS.Controllers
         public async Task<ActionResult<String[]>> PostStatistics(Filter filter)
         {
             //Get all UserReviews
-            UserReviews[] userReviews = await _context.UserReviews.Include(ur => ur.Assignment).Where(ur => ur.Type == "radio").ToArrayAsync();
+            UserReviews[] userReviews = await _context.UserReviews.Include(ur => ur.Assignment).Where(ur => ur.Type == "radio").Where(ur => ur.Answer != null).ToArrayAsync();
 
             //Filter them
             if (filter.assignment != "")
@@ -110,8 +125,23 @@ namespace CSAMS.Controllers
                 }
             }
 
+            //In case the filters doesn't correspond to any userReview
+            if (userReviews.Length == 0)
+            {
+                return BadRequest($"There are no user reviews corresponding to these values!");
+            }
+
             //Return corresponding Statistics
-            return new String[] { "Min: " + GetMin(userReviews).Answer, "Max: " + GetMax(userReviews).Answer, "Mean: " + GetMean(userReviews), "Median: " + GetMedian(userReviews), "Q1: " + GetQ1(userReviews), "Q3: " + GetQ3(userReviews), "Standard Deviation: " + GetStandardDeviation(userReviews) };
+            String[] statistics = new String[] { };
+            try
+            {
+                statistics = new String[] { "Min: " + GetMin(userReviews).Answer, "Max: " + GetMax(userReviews).Answer, "Mean: " + GetMean(userReviews), "Median: " + GetMedian(userReviews), "Q1: " + GetQ1(userReviews), "Q3: " + GetQ3(userReviews), "Standard Deviation: " + GetStandardDeviation(userReviews) };
+            }
+            catch (FormatException)
+            {
+                return BadRequest($"One of the Answer values is not a number!");
+            }
+            return statistics;
         }
 
         public float GetMean(UserReviews[] list)
@@ -120,13 +150,10 @@ namespace CSAMS.Controllers
             float n = 0;
             foreach (UserReviews UR in list)
             {
-                if ( UR.Answer != null)
-                {
-                    total += Convert.ToInt32(UR.Answer);
-                    n += 1;
-                }
+                total += Convert.ToInt32(UR.Answer);
+                n += 1;
             }
-            return total / n;
+            return total / n;   
         }
 
         public float GetMedian(UserReviews[] list)
@@ -134,10 +161,7 @@ namespace CSAMS.Controllers
             List<float> values = new List<float>();
             foreach (UserReviews UR in list)
             {
-                if ( UR.Answer != null)
-                {
-                    values.Add((float)Convert.ToInt32(UR.Answer));
-                }
+                values.Add((float)Convert.ToInt32(UR.Answer));
             }
             values.Sort();
             return values.ElementAt((values.Count - 1) / 2);
@@ -148,10 +172,8 @@ namespace CSAMS.Controllers
             List<float> values = new List<float>();
             foreach (UserReviews UR in list)
             {
-                if (UR.Answer != null)
-                {
+                
                     values.Add((float)Convert.ToInt32(UR.Answer));
-                }
             }
             values.Sort();
             return values.ElementAt((values.Count - 1) / 4);
@@ -162,10 +184,7 @@ namespace CSAMS.Controllers
             List<float> values = new List<float>();
             foreach (UserReviews UR in list)
             {
-                if ( UR.Answer != null)
-                {
-                    values.Add((float)Convert.ToInt32(UR.Answer));
-                }
+                values.Add((float)Convert.ToInt32(UR.Answer));
             }
             values.Sort();
             return values.ElementAt((3 * values.Count - 1) / 4);
@@ -179,11 +198,8 @@ namespace CSAMS.Controllers
 
             foreach (UserReviews UR in list)
             {
-                if ( UR.Answer != null)
-                {
-                    n += 1;
-                    sd += ((float)Convert.ToInt32(UR.Answer) - mean) * ((float)Convert.ToInt32(UR.Answer) - mean);
-                }
+                n += 1;
+                sd += ((float)Convert.ToInt32(UR.Answer) - mean) * ((float)Convert.ToInt32(UR.Answer) - mean);
             }
             return (float)Math.Sqrt(Convert.ToDouble(sd / n));
         }
@@ -194,13 +210,10 @@ namespace CSAMS.Controllers
             int minScore = 1000;
             foreach (UserReviews UR in list)
             {
-                if ( UR.Answer != null)
+                if (Convert.ToInt32(UR.Answer) < minScore)
                 {
-                    if (Convert.ToInt32(UR.Answer) < minScore)
-                    {
-                        minScore = Convert.ToInt32(UR.Answer);
-                        minUR = UR;
-                    }
+                    minScore = Convert.ToInt32(UR.Answer);
+                    minUR = UR;
                 }
             }
             return minUR;
@@ -212,13 +225,10 @@ namespace CSAMS.Controllers
             int minScore = -1000;
             foreach (UserReviews UR in list)
             {
-                if ( UR.Answer != null)
+                if (Convert.ToInt32(UR.Answer) > minScore)
                 {
-                    if (Convert.ToInt32(UR.Answer) > minScore)
-                    {
-                        minScore = Convert.ToInt32(UR.Answer);
-                        minUR = UR;
-                    }
+                    minScore = Convert.ToInt32(UR.Answer);
+                    minUR = UR;
                 }
             }
             return minUR;

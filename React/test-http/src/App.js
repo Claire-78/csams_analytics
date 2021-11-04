@@ -14,6 +14,7 @@ import AssiComments from './components/AssiComments';
 import Statistics from './components/Statistics';
 import PostForm from './components/PostForm';
 import ReviewerComments from './components/ReviewerComments';
+import ShowBoxplot from './components/ShowBoxplot';
 
 function App() {
     return (
@@ -32,7 +33,7 @@ function App() {
                         occaecat cupidatat non proident, sunt in culpa qui
                         officia deserunt mollit anim id est laborum.
 
-      </h1>
+                    </h1>
                 </Route>
             </div>
             <Route path='/User' >
@@ -40,7 +41,7 @@ function App() {
 
             </Route>
 
-            
+
             <Route path='/Comments' >
                 <Comments />
             </Route>
@@ -65,6 +66,10 @@ function App() {
 
             <Route path='/Statistics' >
                 <Statistics />
+            </Route>
+
+            <Route path='/ShowBoxplot' >
+                <ShowBoxplot />
             </Route>
 
         </Router>

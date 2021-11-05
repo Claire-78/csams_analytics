@@ -25,11 +25,6 @@ export const MenuItems = [
         cName: 'nav-links'
     },
     {
-        title: 'Boxplot',
-        url: 'http://localhost:3000/Boxplot',
-        cName: 'nav-links'
-    },
-    {
         title: 'Post',
         url: 'http://localhost:3000/Post',
         cName: 'nav-links'
@@ -44,7 +39,12 @@ export const MenuItems = [
         title: 'Sign up',
         url: '#',
         cName: 'nav-links-mobile'
-    }
+    },
+    {
+        title: 'Boxplot',
+        url: 'http://localhost:3000/ShowBoxplot',
+        cName: 'nav-links'
+    },
 
 
 

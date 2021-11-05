@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using CSAMS.APIModels;
 
 namespace CSAMS.Models
 {
-    public class Reviews
+    public class Reviews : IAPIModel
     {
         [Key]
         [MaxLength(11)]
@@ -12,5 +13,13 @@ namespace CSAMS.Models
         [ForeignKey("Form")]
         public int FormID { get; set; }
         public Forms Form { get; set; }
+
+        public bool AssertEqual(IAPIModel other)
+        {
+            var otherModel = other as Reviews;
+            return (otherModel.ID == ID &&
+                otherModel.FormID == FormID &&
+                otherModel.Form.AssertEqual(Form));
+        }
     }
 }

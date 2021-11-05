@@ -54,7 +54,7 @@ namespace CSAMS.Controllers
 
         public UserReviews GetMax(UserReviews[] list, string formPrefix)
         {
-            Console.Out.WriteLine("Coucou");
+            Console.Out.WriteLine("Coucou");///!!!!!
             UserReviews minUR = new UserReviews();
             int minScore = -1000;
             foreach (UserReviews UR in list)

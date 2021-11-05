@@ -43,18 +43,23 @@ namespace Test_Framework.TestData
             new Reviews {ID = 6, FormID = 12},
         };
 
+        public static readonly Assignments Assignment1 =
+            new Assignments { ID = 1, Name = "assi1" };
+        public static readonly Assignments Assignment2 =
+            new Assignments { ID = 2, Name = "assi2" };
+
         public static readonly UserReviews[] UserReviewTest =
         {
-            new UserReviews {ID = 1, UserTarget = 1, UserReviewer = 2, Name = "assi1_review_01", Type = "radio", Answer = "2", AssignmentID = 1, ReviewID = 1, Comment = "Could have been a lot better"},
-            new UserReviews {ID = 2, UserTarget = 1, UserReviewer = 2, Name = "assi1_review_02", Type = "radio", Answer = "4", AssignmentID = 1, ReviewID = 1, Comment = null},
-            new UserReviews {ID = 3, UserTarget = 1, UserReviewer = 2, Name = "assi1_review_03", Type = "textarea", Answer = "This is just some text", AssignmentID = 1, ReviewID = 1, Comment = "This review is text"},
-            new UserReviews {ID = 4, UserTarget = 1, UserReviewer = 2, Name = "assi1_review_04", Type = "paragraph", Answer = "this answer should not be considered", AssignmentID = 1, ReviewID = 1, Comment = null},
-            new UserReviews {ID = 5, UserTarget = 1, UserReviewer = 2, Name = "assi1_review_05", Type = "radio", Answer = "3", AssignmentID = 1, ReviewID = 1, Comment = null},
-            new UserReviews {ID = 6, UserTarget = 2, UserReviewer = 3, Name = "assi2_review_01", Type = "radio", Answer = "1", AssignmentID = 2, ReviewID = 2, Comment = "Worst job I have ever seen"},
-            new UserReviews {ID = 7, UserTarget = 2, UserReviewer = 3, Name = "assi2_review_02", Type = "checkbox", Answer = "on", AssignmentID = 2, ReviewID = 2, Comment = "This is acceptable"},
-            new UserReviews {ID = 8, UserTarget = 2, UserReviewer = 3, Name = "assi2_review_03", Type = "radio", Answer = "5", AssignmentID = 2, ReviewID = 2, Comment = null},
-            new UserReviews {ID = 9, UserTarget = 3, UserReviewer = 1, Name = "assi1_review_01", Type = "radio", Answer = "2", AssignmentID = 1, ReviewID = 1, Comment = null},
-            new UserReviews {ID = 10, UserTarget = 3, UserReviewer = 1, Name = "assi1_review_02", Type = "radio", Answer = "6", AssignmentID = 1, ReviewID = 1, Comment = "This is fantastic. Well done work"},
+            new UserReviews {ID = 1, UserTarget = 1, UserReviewer = 2, Name = "assi1_review_01", Type = "radio", Answer = "2", AssignmentID = 1, Assignment = Assignment1, ReviewID = 1, Comment = "Could have been a lot better"},
+            new UserReviews {ID = 2, UserTarget = 1, UserReviewer = 2, Name = "assi1_review_02", Type = "radio", Answer = "4", AssignmentID = 1, Assignment = Assignment1, ReviewID = 1, Comment = null},
+            new UserReviews {ID = 3, UserTarget = 1, UserReviewer = 2, Name = "assi1_review_03", Type = "textarea", Answer = "This is just some text", AssignmentID = 1, Assignment = Assignment1, ReviewID = 1, Comment = "This review is text"},
+            new UserReviews {ID = 4, UserTarget = 1, UserReviewer = 2, Name = "assi1_review_04", Type = "paragraph", Answer = "this answer should not be considered", AssignmentID = 1, Assignment = Assignment1, ReviewID = 1, Comment = null},
+            new UserReviews {ID = 5, UserTarget = 1, UserReviewer = 2, Name = "assi1_review_05", Type = "radio", Answer = "3", AssignmentID = 1, Assignment = Assignment1, ReviewID = 1, Comment = null},
+            new UserReviews {ID = 6, UserTarget = 2, UserReviewer = 3, Name = "assi2_review_01", Type = "radio", Answer = "1", AssignmentID = 2, Assignment = Assignment2, ReviewID = 2, Comment = "Worst job I have ever seen"},
+            new UserReviews {ID = 7, UserTarget = 2, UserReviewer = 3, Name = "assi2_review_02", Type = "checkbox", Answer = "on", AssignmentID = 2, Assignment = Assignment2, ReviewID = 2, Comment = "This is acceptable"},
+            new UserReviews {ID = 8, UserTarget = 2, UserReviewer = 3, Name = "assi2_review_03", Type = "radio", Answer = "5", AssignmentID = 2, Assignment = Assignment2, ReviewID = 2, Comment = null},
+            new UserReviews {ID = 9, UserTarget = 3, UserReviewer = 1, Name = "assi1_review_01", Type = "radio", Answer = "2", AssignmentID = 1, Assignment = Assignment1, ReviewID = 1, Comment = null},
+            new UserReviews {ID = 10, UserTarget = 3, UserReviewer = 1, Name = "assi1_review_02", Type = "radio", Answer = "6", AssignmentID = 1, Assignment = Assignment1, ReviewID = 1, Comment = "This is fantastic. Well done work"},
         };
 
         public static readonly Roles[] RolesTest =

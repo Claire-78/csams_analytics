@@ -28,14 +28,14 @@ namespace CSAMS.Controllers
 
             if (filter.assignment != "")
             {
-                userReviews = userReviews.Where(ur => ur.Assignment.Name == filter.assignment).ToArray();
+                userReviews = ApplyFilterAssignment(userReviews, filter.assignment);
             }
 
             if (filter.reviewerID != "")
             {
                 try
                 {
-                    userReviews = userReviews.Where(ur => ur.UserReviewer == Convert.ToInt32(filter.reviewerID)).ToArray();
+                    userReviews = ApplyFilterReviewerID(userReviews, Convert.ToInt32(filter.reviewerID));
                 }
                 catch (FormatException)
                 {
@@ -47,7 +47,7 @@ namespace CSAMS.Controllers
             {
                 try
                 {
-                    userReviews = userReviews.Where(ur => ur.UserTarget == Convert.ToInt32(filter.targetID)).ToArray();
+                    userReviews = ApplyFilterTargetID(userReviews, Convert.ToInt32(filter.targetID));
                 }
                 catch (FormatException)
                 {
@@ -55,12 +55,40 @@ namespace CSAMS.Controllers
                 }
             }
 
-            if (userReviews.Length == 0)
+            if (userReviews is null || userReviews.Length == 0)
             {
                 return BadRequest($"There are no user reviews corresponding to these values!");
             }
 
             return userReviews;
+        }
+
+        public static UserReviews[] ApplyFilterAssignment(UserReviews[] userReviews, String assignmentName)
+        {
+            UserReviews[] result = userReviews.Where(ur => ur.Assignment.Name == assignmentName).ToArray();
+            if (result.Length == 0)
+            {
+                return null;
+            }
+            return result;
+        }
+        public static UserReviews[] ApplyFilterReviewerID(UserReviews[] userReviews, int reviewerID)
+        {
+            UserReviews[] result = userReviews.Where(ur => ur.UserReviewer == reviewerID).ToArray();
+            if (result.Length == 0)
+            {
+                return null;
+            }
+            return result;
+        }
+        public static UserReviews[] ApplyFilterTargetID(UserReviews[] userReviews, int targetID)
+        {
+            UserReviews[] result = userReviews.Where(ur => ur.UserTarget == targetID).ToArray();
+            if (result.Length == 0)
+            {
+                return null;
+            }
+            return result;
         }
 
 
@@ -98,14 +126,14 @@ namespace CSAMS.Controllers
             //Filter them
             if (filter.assignment != "")
             {
-                userReviews = userReviews.Where(ur => ur.Assignment.Name == filter.assignment).ToArray();
+                userReviews = ApplyFilterAssignment(userReviews, filter.assignment);
             }
 
             if (filter.reviewerID != "")
             {
                 try
                 {
-                    userReviews = userReviews.Where(ur => ur.UserReviewer == Convert.ToInt32(filter.reviewerID)).ToArray();
+                    userReviews = ApplyFilterReviewerID(userReviews, Convert.ToInt32(filter.reviewerID));
                 }
                 catch (FormatException)
                 {
@@ -117,7 +145,7 @@ namespace CSAMS.Controllers
             {
                 try
                 {
-                    userReviews = userReviews.Where(ur => ur.UserTarget == Convert.ToInt32(filter.targetID)).ToArray();
+                    userReviews = ApplyFilterTargetID(userReviews, Convert.ToInt32(filter.targetID));
                 }
                 catch (FormatException)
                 {
@@ -126,7 +154,7 @@ namespace CSAMS.Controllers
             }
 
             //In case the filters doesn't correspond to any userReview
-            if (userReviews.Length == 0)
+            if (userReviews is null || userReviews.Length == 0)
             {
                 return BadRequest($"There are no user reviews corresponding to these values!");
             }

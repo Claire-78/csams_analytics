@@ -9,11 +9,11 @@ const ShowBoxplot = ({ values }) => {
 
         <div>
             <Boxplot
-                width={400}
-                height={40}
+                width={600}
+                height={300}
                 orientation="horizontal"
                 min={0}
-                max={30}
+                max={100}
                 stats={stats}
             />
         </div>

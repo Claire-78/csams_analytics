@@ -10,8 +10,8 @@ namespace CSAMS.APIModels
         public float Grade { get; set; }
         public string AssingmentName { get; set; }
         public int AssingmentID { get; set; }
+        public int ReviewerID { get; set; }
 
-       
 
         public string type { get; set; }
         public bool AssertEqual(IAPIModel other)
@@ -20,7 +20,7 @@ namespace CSAMS.APIModels
             return (Grade == otherProject.Grade &&
                 AssingmentName == otherProject.AssingmentName &&
                 type == otherProject.type &&
-               
+               ReviewerID==otherProject.ReviewerID&&
                 AssingmentID == otherProject.AssingmentID);
         }
     }

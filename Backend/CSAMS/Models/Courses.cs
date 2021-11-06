@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using CSAMS.APIModels;
 
 namespace CSAMS.Models
 {
@@ -9,7 +10,7 @@ namespace CSAMS.Models
         Spring
     }
 
-    public class Courses
+    public class Courses : IAPIModel
     {
         [Key]
         [MaxLength(11)]
@@ -31,6 +32,18 @@ namespace CSAMS.Models
         [MaxLength(11)]
         public int Year { get; set; }
         public SemesterSeasons Semester { get; set; }
-
+        public bool AssertEqual(IAPIModel other)
+        {
+            var otherModel = other as Courses;
+            return (otherModel.ID == ID &&
+                otherModel.Hash == Hash &&
+                otherModel.CourseCode == CourseCode &&
+                otherModel.CourseName == CourseName &&
+                otherModel.Teacher == Teacher &&
+                otherModel.User.AssertEqual(User) &&
+                otherModel.Description == Description &&
+                otherModel.Year == Year &&
+                otherModel.Semester == Semester);
+        }
     }
 }

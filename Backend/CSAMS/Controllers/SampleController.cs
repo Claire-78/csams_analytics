@@ -29,15 +29,12 @@ namespace CSAMS.Controllers
         [HttpGet("user")]
         public async Task<ActionResult<Users[]>> GetUsers()
         {
-            
-            
-            Console.WriteLine("here");
             return await _context.Users.Include(u => u.UserRole).ToArrayAsync();
         }
 
         //////////////////////////////
        
-        [HttpPost("user")]
+        [HttpPost("post")]
         public ActionResult<Users> PostUser(User newuser)
         {
            
@@ -45,7 +42,7 @@ namespace CSAMS.Controllers
             return Ok();
         }
 
-
+        
         [HttpPost("user")]
         public ActionResult<Users> PostUserFilter(UserFilter newuser)
         {
@@ -53,7 +50,7 @@ namespace CSAMS.Controllers
 
             return Ok();
         }
-
+        
         ///////////////////
     }
 }

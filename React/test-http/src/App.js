@@ -31,7 +31,6 @@ function App() {
             </div>
             <Route path='/User' >
                 <PostListAgain />
-
             </Route>
 
 

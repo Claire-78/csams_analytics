@@ -32,53 +32,18 @@ namespace CSAMS.Controllers
 
 
 
-        /*
-        [HttpGet("Bottom")]
-        public async Task<ActionResult<TopModel[][]>> GetBottomReviews()
-        {
-            var test = await _context.Assignments.ToArrayAsync();
-            var fields = await _context.Fields.ToArrayAsync();
-            TopModel[][] child = new TopModel[test.ToList().Count][];
-
-            var t = _context.UserReviews.Include(r => r.Review).AsEnumerable().GroupBy(r => r.AssignmentID).Select(r => BottomProjects(r.ToArray(), fields)).ToArray();
-            return t;
-        }
-
-        public static TopModel[] BottomProjects(UserReviews[] userReviews, Fields[] fields)
-        {
-            var child =
-                    userReviews
-                    .Select(r => (r, fields.Where(f => f.FormID == r.Review.FormID).Where(f => f.Name == r.Name).FirstOrDefault().Weight)).Where(ur => ur.r.Answer != null).Where(ur => ur.r.Type == "radio")
-
-                   .OrderBy(ur => ur.r.UserTarget).OrderBy(ur => int.Parse(ur.r.Answer) * ur.Item2)
-                    .Take(5)
-                   .Select(ur => new TopModel
-                   {
-                       Grade = int.Parse(ur.r.Answer) * ur.Item2,
-                       AssingmentID = ur.r.AssignmentID,
-                       AssingmentName = ur.r.Assignment.Name,
-                       User = ur.r.UserTarget,
-                       Reviewer = ur.r.UserReviewer,
-                       type = "Bottom"
-
-                   })
-
-                    .ToArray();
-            return child;
-        }
-        */
 
         [HttpGet("Top/{N}/{Type}/{IsProject}")]
         public async Task<ActionResult<TopModel[]>> GetTopReviews(int N, string Type, Boolean IsProject)
         {
 
-            var test = await _context.Assignments.ToArrayAsync();
+           // var test = await _context.Assignments.ToArrayAsync();
             var fields = await _context.Fields.ToArrayAsync();
-            TopModel[][] child = new TopModel[test.ToList().Count][];
+           // TopModel[][] child = new TopModel[test.ToList().Count][];
 
             Console.WriteLine($"N is {N} and Type is {Type}");
 
-            var t = _context.UserReviews.Include(r => r.Review)
+            var t = _context.UserReviews.Include(r => r.Review).Include(r => r.Assignment)
                   .AsEnumerable()
                   // .GroupBy(r => r.AssignmentID)
                   // .Select(r => TopProjects(r.ToArray(), fields, IsProject))
@@ -177,6 +142,7 @@ namespace CSAMS.Controllers
                 .Select(r => (r, fields.Where(f => f.FormID == r.Review.FormID)
                 .Where(f => f.Name == r.Name).FirstOrDefault().Weight))
                 .Where(ur => ur.r.Answer != null)
+                .Where(ur => ur.r.Assignment != null)
                 .Where(ur => ur.r.Type == "radio")
                 .ToArray();
                   
@@ -262,6 +228,11 @@ namespace CSAMS.Controllers
 
 
 
+
+
+
+
+      
     }
 
 

@@ -31,7 +31,7 @@ namespace CSAMS.Controllers
 
 
 
-
+        /*
 
         [HttpGet("Top/{N}/{Type}/{IsProject}")]
         public async Task<ActionResult<TopModel[]>> GetTopReviews(int N, string Type, Boolean IsProject)
@@ -96,12 +96,12 @@ namespace CSAMS.Controllers
                 {
                     return t
                         
-                           .GroupBy(r => r.ReviewID)
+                           .GroupBy(r => r.UserReviewer)
                           .Select(r => TopProjects(r.ToArray(), fields, IsProject, average))
                             
                        .Where(r => r != null)
                      
-                         .OrderByDescending(p=>p.Grade)
+                         .OrderBy(p=>p.Grade)
                        
                          .Take(N)
                          
@@ -111,10 +111,10 @@ namespace CSAMS.Controllers
                 else if (Type == "Bottom")
                 {
                     return t
-                        .GroupBy(r => r.ReviewID)
+                        .GroupBy(r => r.UserReviewer)
                        .Select(r => TopProjects(r.ToArray(), fields, IsProject, average))
                        .Where(r => r != null)
-                       .OrderBy(p => p.Grade)
+                       .OrderByDescending(p => p.Grade)
                        .Take(N)
                        .ToArray();
 
@@ -133,6 +133,9 @@ namespace CSAMS.Controllers
 
 
         }
+
+        */
+        [HttpGet("Top/{N}/{Type}/{IsProject}")]
         public static TopModel TopProjects(UserReviews[] userReviews, Fields[] fields, Boolean IsProject,float average)
         {
 
@@ -226,13 +229,117 @@ namespace CSAMS.Controllers
 
 
 
+        [HttpGet("Top/{N}/{Type}/{IsProject}")]
+        public async Task<ActionResult<TopModel[]>> GetTopReviews(int N, string Type, Boolean IsProject)
+        {
+            var fields = await _context.Fields.ToArrayAsync();
+            var userdata = _context.UserReviews.Include(r => r.Review).Include(r => r.Assignment)
+                  .AsEnumerable()
+                  // .GroupBy(r => r.AssignmentID)
+                  // .Select(r => TopProjects(r.ToArray(), fields, IsProject))
+                  .Where(p => p != null)
+
+                  .ToArray();
+            var toAverege = _context.UserReviews.Include(r => r.Review).ToArray();
+           return OuterTopProjects(N, Type, IsProject, userdata, fields, toAverege);
+        }
 
 
+        public static TopModel[] OuterTopProjects(int N, string Type, Boolean IsProject, CSAMS.Models.UserReviews[] Userdata, CSAMS.Models.Fields[] fields,UserReviews[] ToAvrege)
+        {
+            var t = Userdata
+
+                  ;
+            Console.WriteLine($"N is {N} and Type is {Type}");
+            Console.WriteLine(Userdata.Length + " testdata_length ");
+           
+            if (IsProject == true)
+            {
+                if (Type == "Top")
+                {
+                    return t
+                           .GroupBy(r => r.AssignmentID)
+                          .Select(r => TopController.TopProjects(r.ToArray(), fields, IsProject, 0))
+                       .Where(r => r != null)
+
+                         .OrderByDescending(p => p.Grade)
+                         .Take(N)
+                         .ToArray();
+                    ;
+                }
+                else if (Type == "Bottom")
+                {
+                    Console.WriteLine(t.Length);
+                    var x = t
+                        .GroupBy(r => r.AssignmentID)
+                       .Select(r => TopController.TopProjects(r.ToArray(), fields, IsProject, 0))
+                       .Where(r => r != null)
+                       .OrderBy(p => p.Grade)
+                       .Take(N)
+
+                       .ToArray();
+                    return x;
+                }
+                else
+                {
+                    return t
+                          .GroupBy(r => r.AssignmentID)
+                          .Select(r => TopController.TopProjects(r.ToArray(), fields, IsProject, 0))
+                       .Where(r => r != null)
+                         .Take(2)
+                         .ToArray();
+                    ;
+                }
+            }
+            else////////////////////////////
+            {
+                var average = TopController.GetMiddle(ToAvrege, fields);
+
+                if (Type == "Top")
+                {
+                    return t
+
+                           .GroupBy(r => r.UserReviewer)
+                          .Select(r => TopController.TopProjects(r.ToArray(), fields, IsProject, average))
+
+                       .Where(r => r != null)
+
+                         .OrderByDescending(p => p.Grade)
+
+                         .Take(N)
+
+                         .ToArray();
+                    ;
+                }
+                else if (Type == "Bottom")
+                {
+                    return t
+                        .GroupBy(r => r.UserReviewer)
+                       .Select(r => TopController.TopProjects(r.ToArray(), fields, IsProject, average))
+                       .Where(r => r != null)
+                       .OrderBy(p => p.Grade)
+                       .Take(N)
+                       .ToArray();
+
+                }
+                else
+                {
+                    return t
+                          .GroupBy(r => r.ReviewID)
+                          .Select(r => TopController.TopProjects(r.ToArray(), fields, IsProject, average))
+                       .Where(r => r != null)
+                         .Take(2)
+                         .ToArray();
+                    ;
+                }
+            }
 
 
+        }
 
 
-      
+   
+
     }
 
 

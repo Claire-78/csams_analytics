@@ -37,7 +37,7 @@ namespace Test_Framework.GlobalStatistics
 
         public readonly TopModel[] ExpectedProjectResulBottomtTwo =
         {
-                   new TopModel{Grade= 12.17F,AssingmentName= "PROG2006 Assignment 1 tic-tac-roll",AssingmentID= 5,ReviewerID=97, type= "top"}
+                   new TopModel{Grade= 10.17F,AssingmentName= "PROG2006 Assignment 1 tic-tac-roll",AssingmentID= 5,ReviewerID=97, type= "top"}
 
 
         };
@@ -49,7 +49,7 @@ namespace Test_Framework.GlobalStatistics
         public void TestProjectTopsOne()
         {
            
-            var TopOne = TestProjects(1, "Top", true,TestData.TestData.TopTestsOne);
+            var TopOne = TopController.OuterTopProjects(1, "Top", true,TestData.TestData.TopTestsOne, TestData.TestData.TopTestsFields, TestData.TestData.TopTestsOne);
             for (int i = 0; i < TopOne.Length; i++)
             {
                 Console.WriteLine(TopOne.Length + ":length ");
@@ -65,7 +65,7 @@ namespace Test_Framework.GlobalStatistics
 
         [TestMethod]
         public void TestProjectTopsTwo()
-        {var TopTwo = TestProjects(2, "Top", false, TestData.TestData.TopTestsOne);
+        {var TopTwo = TopController.OuterTopProjects(2, "Top", false, TestData.TestData.TopTestsOne, TestData.TestData.TopTestsFields, TestData.TestData.TopTestsOne);
             for (int i = 0; i < TopTwo.Length; i++)
             {
                 Console.WriteLine(TopTwo.Length + ":length ");
@@ -81,7 +81,7 @@ namespace Test_Framework.GlobalStatistics
         [TestMethod]
         public void TestProjectBottomOne()
         {
-            var BottomOne = TestProjects(2, "Bottom", true, TestData.TestData.TopTestsOne);
+            var BottomOne = TopController.OuterTopProjects(2, "Bottom", true, TestData.TestData.TopTestsOne, TestData.TestData.TopTestsFields, TestData.TestData.TopTestsOne);
             for (int i = 0; i < BottomOne.Length; i++)
             {
                 Console.WriteLine(BottomOne.Length + ":length ");
@@ -97,7 +97,7 @@ namespace Test_Framework.GlobalStatistics
         [TestMethod]
         public void TestProjectBottomTwo()
         {
-            var BottomTwo = TestProjects(1, "Bottom", false, TestData.TestData.TopTestsOne);
+            var BottomTwo = TopController.OuterTopProjects(1, "Bottom", false, TestData.TestData.TopTestsOne,TestData.TestData.TopTestsFields, TestData.TestData.TopTestsOne);
             for (int i = 0; i < BottomTwo.Length; i++)
             {
                 Console.WriteLine(BottomTwo.Length + ":length ");
@@ -111,120 +111,120 @@ namespace Test_Framework.GlobalStatistics
         }
 
 
+        /*
+          for(int i=0;i< TestData.TestData.TopTestsOne.Length; i++)
+          {
+              Console.WriteLine(t[i].Answer + " " + i+": answer TESTDATA ");
+              Console.WriteLine(t[i].AssignmentID + " " + i + ": AssignmentID TESTDATA ");
+              Console.WriteLine(t[i].ReviewID + " " + i + ": ReviewID TESTDATA ");
+              Console.WriteLine(t[i].UserReviewer + " " + i + ": UserReviewer  TESTDATA ");
+              Console.WriteLine(t[i].Name+ " " + i + ": Name TESTDATA ");
 
 
-        public TopModel[] TestProjects(int N, string Type, Boolean IsProject, CSAMS.Models.UserReviews[] testdata)
-        {
-            var t=testdata
-           
-                  .AsEnumerable()
-                  // .GroupBy(r => r.AssignmentID)
-                  // .Select(r => TopProjects(r.ToArray(), fields, IsProject))
-                  .Where(p => p != null)
-
-                  .ToArray();
-            Console.WriteLine($"N is {N} and Type is {Type}");
-            Console.WriteLine(TestData.TestData.TopTestsOne.Length + " testdata_length ");
-          /*
-            for(int i=0;i< TestData.TestData.TopTestsOne.Length; i++)
-            {
-                Console.WriteLine(t[i].Answer + " " + i+": answer TESTDATA ");
-                Console.WriteLine(t[i].AssignmentID + " " + i + ": AssignmentID TESTDATA ");
-                Console.WriteLine(t[i].ReviewID + " " + i + ": ReviewID TESTDATA ");
-                Console.WriteLine(t[i].UserReviewer + " " + i + ": UserReviewer  TESTDATA ");
-                Console.WriteLine(t[i].Name+ " " + i + ": Name TESTDATA ");
-
-
-            }
-          */
-            //  int N = 1;
-            //  string Type = "Top";
-            //  Boolean IsProject = true;
-            if (IsProject == true)
-            {
-                if (Type == "Top")
+          }
+        */
+        /*
+                public TopModel[] TestProjects(int N, string Type, Boolean IsProject, CSAMS.Models.UserReviews[] testdata,CSAMS.Models.Fields[] testfields)
                 {
-                    return t
-                           .GroupBy(r => r.AssignmentID)
-                          .Select(r => TopController.TopProjects(r.ToArray(), TestData.TestData.TopTestsFields, IsProject, 0))
-                       .Where(r => r != null)
+                    var t=testdata
 
-                         .OrderByDescending(p => p.Grade)
-                         .Take(N)
-                         .ToArray();
-                    ;
+                          .AsEnumerable()
+                          // .GroupBy(r => r.AssignmentID)
+                          // .Select(r => TopProjects(r.ToArray(), fields, IsProject))
+                          .Where(p => p != null)
+
+                          .ToArray();
+                    Console.WriteLine($"N is {N} and Type is {Type}");
+                    Console.WriteLine(testdata.Length + " testdata_length ");
+
+                    //  int N = 1;
+                    //  string Type = "Top";
+                    //  Boolean IsProject = true;
+                    if (IsProject == true)
+                    {
+                        if (Type == "Top")
+                        {
+                            return t
+                                   .GroupBy(r => r.AssignmentID)
+                                  .Select(r => TopController.TopProjects(r.ToArray(), testfields, IsProject, 0))
+                               .Where(r => r != null)
+
+                                 .OrderByDescending(p => p.Grade)
+                                 .Take(N)
+                                 .ToArray();
+                            ;
+                        }
+                        else if (Type == "Bottom")
+                        {
+                            Console.WriteLine(t.Length);
+                            var x = t
+                                .GroupBy(r => r.AssignmentID)
+                               .Select(r => TopController.TopProjects(r.ToArray(), testfields, IsProject, 0))
+                               .Where(r => r != null)
+                               .OrderBy(p => p.Grade)
+                               .Take(N)
+
+                               .ToArray();
+                            return x;
+                        }
+                        else
+                        {
+                            return t
+                                  .GroupBy(r => r.AssignmentID)
+                                  .Select(r => TopController.TopProjects(r.ToArray(), testfields, IsProject, 0))
+                               .Where(r => r != null)
+                                 .Take(2)
+                                 .ToArray();
+                            ;
+                        }
+                    }
+                    else////////////////////////////
+                    {
+                        var average = TopController.GetMiddle(testdata, testfields);
+
+                        if (Type == "Top")
+                        {
+                            return t
+
+                                   .GroupBy(r => r.ReviewID)
+                                  .Select(r => TopController.TopProjects(r.ToArray(), testfields, IsProject, average))
+
+                               .Where(r => r != null)
+
+                                 .OrderByDescending(p => p.Grade)
+
+                                 .Take(N)
+
+                                 .ToArray();
+                            ;
+                        }
+                        else if (Type == "Bottom")
+                        {
+                            return t
+                                .GroupBy(r => r.ReviewID)
+                               .Select(r => TopController.TopProjects(r.ToArray(), testfields, IsProject, average))
+                               .Where(r => r != null)
+                               .OrderBy(p => p.Grade)
+                               .Take(N)
+                               .ToArray();
+
+                        }
+                        else
+                        {
+                            return t
+                                  .GroupBy(r => r.ReviewID)
+                                  .Select(r => TopController.TopProjects(r.ToArray(), testfields, IsProject, average))
+                               .Where(r => r != null)
+                                 .Take(2)
+                                 .ToArray();
+                            ;
+                        }
+                    }
+
+
                 }
-                else if (Type == "Bottom")
-                {
-                    Console.WriteLine(t.Length);
-                    var x = t
-                        .GroupBy(r => r.AssignmentID)
-                       .Select(r => TopController.TopProjects(r.ToArray(), TestData.TestData.TopTestsFields, IsProject, 0))
-                       .Where(r => r != null)
-                       .OrderBy(p => p.Grade)
-                       .Take(N)
 
-                       .ToArray();
-                    return x;
-                }
-                else
-                {
-                    return t
-                          .GroupBy(r => r.AssignmentID)
-                          .Select(r => TopController.TopProjects(r.ToArray(), TestData.TestData.TopTestsFields, IsProject, 0))
-                       .Where(r => r != null)
-                         .Take(2)
-                         .ToArray();
-                    ;
-                }
-            }
-            else////////////////////////////
-            {
-                var average = TopController.GetMiddle(TestData.TestData.TopTestsOne, TestData.TestData.TopTestsFields);
-
-                if (Type == "Top")
-                {
-                    return t
-
-                           .GroupBy(r => r.ReviewID)
-                          .Select(r => TopController.TopProjects(r.ToArray(), TestData.TestData.TopTestsFields, IsProject, average))
-
-                       .Where(r => r != null)
-
-                         .OrderByDescending(p => p.Grade)
-
-                         .Take(N)
-
-                         .ToArray();
-                    ;
-                }
-                else if (Type == "Bottom")
-                {
-                    return t
-                        .GroupBy(r => r.ReviewID)
-                       .Select(r => TopController.TopProjects(r.ToArray(), TestData.TestData.TopTestsFields, IsProject, average))
-                       .Where(r => r != null)
-                       .OrderBy(p => p.Grade)
-                       .Take(N)
-                       .ToArray();
-
-                }
-                else
-                {
-                    return t
-                          .GroupBy(r => r.ReviewID)
-                          .Select(r => TopController.TopProjects(r.ToArray(), TestData.TestData.TopTestsFields, IsProject, average))
-                       .Where(r => r != null)
-                         .Take(2)
-                         .ToArray();
-                    ;
-                }
-            }
-
-
-        }
-
-
+                    */
     }
 }
     

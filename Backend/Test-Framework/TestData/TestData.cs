@@ -44,6 +44,11 @@ namespace Test_Framework.TestData
             new Reviews {ID = 6, FormID = 12},
         };
 
+        public static readonly Assignments Assignment1 =
+            new Assignments { ID = 1, Name = "assi1" };
+        public static readonly Assignments Assignment2 =
+            new Assignments { ID = 2, Name = "assi2" };
+
         public static readonly UserReviews[] UserReviewTest =
         {
             new UserReviews {ID = 1, UserTarget = 1, UserReviewer = 2, Name = "assi1_review_01", Type = "radio", Answer = "2", AssignmentID = 1, ReviewID = 1, Comment = "Could have been a lot better"},

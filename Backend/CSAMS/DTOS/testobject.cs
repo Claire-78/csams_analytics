@@ -16,5 +16,13 @@ namespace CSAMS.DTOS
        
 
     }
+
+    public class Filter
+    {
+        public string assignment { get; set; }
+        public string reviewerID { get; set; }
+        public string targetID { get; set; }
+        public string errorMsg { get; set; }
+    }
 }
 

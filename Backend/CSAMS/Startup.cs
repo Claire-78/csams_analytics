@@ -30,7 +30,7 @@ namespace CSAMS
                         builder.WithOrigins("http://localhost:3000")
                         // .WithExposedHeaders("content-type")
                         // .AllowAnyOrigin()
-                        // .AllowAnyMethod()
+                         .AllowAnyMethod()
                           .AllowAnyHeader()
                        //   .AllowAnyOrigin()
                        // .AllowAnyHeader()

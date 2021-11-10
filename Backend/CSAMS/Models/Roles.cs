@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using CSAMS.APIModels;
 
 namespace CSAMS.Models
 {
-    public class Roles
+    public class Roles : IAPIModel
     {
         [Key]
         [MaxLength(11)]
@@ -14,5 +15,13 @@ namespace CSAMS.Models
         [MaxLength(256)]
         [Column(TypeName = "VARCHAR")]
         public string Name { get; set; }
+
+        public bool AssertEqual(IAPIModel other)
+        {
+            var otherModel = other as Roles;
+            return (otherModel.ID == ID &&
+                otherModel.Name == Name &&
+                otherModel.Key == Key);
+        }
     }
 }

@@ -8,8 +8,8 @@ namespace CSAMS.APIModels
     public class TopModel : IAPIModel
     {
         public float Grade { get; set; }
-        public string AssingmentName { get; set; }
-        public int AssingmentID { get; set; }
+        public string AssignmentName { get; set; }
+        public int AssignmentID { get; set; }
         public int ReviewerID { get; set; }
 
 
@@ -18,10 +18,10 @@ namespace CSAMS.APIModels
         {
             var otherProject = other as TopModel;
             return (Grade == otherProject.Grade &&
-                AssingmentName == otherProject.AssingmentName &&
+                AssignmentName == otherProject.AssignmentName &&
                 type == otherProject.type &&
                ReviewerID==otherProject.ReviewerID&&
-                AssingmentID == otherProject.AssingmentID);
+                AssignmentID == otherProject.AssignmentID);
         }
     }
 }

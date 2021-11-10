@@ -15,15 +15,15 @@ namespace Test_Framework.GlobalStatistics
     {
         public readonly TopModel[] ExpectedProjectResultTopOne =
             {
-                new TopModel{Grade= 4,AssingmentName= "Cloud 2021 - Assignment 2",AssingmentID= 6,ReviewerID=33, type= "top"}
+                new TopModel{Grade= 4,AssignmentName= "Cloud 2021 - Assignment 2",AssignmentID= 6,ReviewerID=33, type= "top"}
              //  new TopModel{Grade= 5,AssingmentName= "PROG2006 Assignment 1 tic-tac-roll",AssingmentID= 5,type= "top"},
              //new TopModel{Grade= 40,AssingmentName= "Cloud 2021 - Assignment 1",AssingmentID= 1,type= "top"}
             };
 
         public readonly TopModel[] ExpectedProjectResulToptTwo = 
         {
-                   new TopModel{Grade=1.21F,AssingmentName= "PROG2006 Assignment 1 tic-tac-roll",AssingmentID= 5,ReviewerID=97,type= "top"},
-               new TopModel{Grade= 2.79F,AssingmentName= "Cloud 2021 - Assignment 1",AssingmentID= 1,ReviewerID=19,type= "top"}
+                   new TopModel{Grade=1.21F,AssignmentName= "PROG2006 Assignment 1 tic-tac-roll",AssignmentID= 5,ReviewerID=97,type= "top"},
+               new TopModel{Grade= 2.79F,AssignmentName= "Cloud 2021 - Assignment 1",AssignmentID= 1,ReviewerID=19,type= "top"}
             // new TopModel{Grade= 1,AssingmentName= "Cloud 2021 - Assignment 2",AssingmentID= 6,type= "Bottom"}
             
         
@@ -31,13 +31,13 @@ namespace Test_Framework.GlobalStatistics
 
         public readonly TopModel[] ExpectedProjectResultBottomOne =
            {
-                   new TopModel{Grade= 3.73F,AssingmentName= "Cloud 2021 - Assignment 1",AssingmentID= 1,ReviewerID=27, type= "top"},
-                       new TopModel{Grade= 3,AssingmentName= "PROG2006 Assignment 1 tic-tac-roll",AssingmentID= 5,ReviewerID=97, type= "top"}
+                   new TopModel{Grade= 3.73F,AssignmentName= "Cloud 2021 - Assignment 1",AssignmentID= 1,ReviewerID=27, type= "top"},
+                       new TopModel{Grade= 3,AssignmentName= "PROG2006 Assignment 1 tic-tac-roll",AssignmentID= 5,ReviewerID=97, type= "top"}
             };
 
         public readonly TopModel[] ExpectedProjectResulBottomtTwo =
         {
-                   new TopModel{Grade= 3.62F,AssingmentName= "Cloud 2021 - Assignment 1",AssingmentID= 1,ReviewerID=27, type= "top"}
+                   new TopModel{Grade= 3.62F,AssignmentName= "Cloud 2021 - Assignment 1",AssignmentID= 1,ReviewerID=27, type= "top"}
 
 
         };
@@ -53,8 +53,8 @@ namespace Test_Framework.GlobalStatistics
             for (int i = 0; i < TopOne.Length; i++)
             {
                 Console.WriteLine(TopOne.Length + ":length ");
-                Console.WriteLine(TopOne[i].AssingmentName + " " + i + " :A.Name  ");
-                Console.WriteLine(TopOne[i].AssingmentID + " " + i + " :A.ID  ");
+                Console.WriteLine(TopOne[i].AssignmentName + " " + i + " :A.Name  ");
+                Console.WriteLine(TopOne[i].AssignmentID + " " + i + " :A.ID  ");
                 Console.WriteLine(TopOne[i].Grade + " " + i + " :Grade  ");
                 Console.WriteLine(TopOne[i].ReviewerID + " " + i + " :R.ID  ");
                 Console.WriteLine(TopOne[i].type + " " + i + " :type  ");
@@ -69,8 +69,8 @@ namespace Test_Framework.GlobalStatistics
             for (int i = 0; i < TopTwo.Length; i++)
             {
                 Console.WriteLine(TopTwo.Length + ":length ");
-                Console.WriteLine(TopTwo[i].AssingmentName + " " + i + " :A.Name  ");
-                Console.WriteLine(TopTwo[i].AssingmentID + " " + i + " :A.ID  ");
+                Console.WriteLine(TopTwo[i].AssignmentName + " " + i + " :A.Name  ");
+                Console.WriteLine(TopTwo[i].AssignmentID + " " + i + " :A.ID  ");
                 Console.WriteLine(TopTwo[i].Grade + " " + i + " :Grade  ");
                 Console.WriteLine(TopTwo[i].ReviewerID + " " + i + " :R.ID  ");
                 Console.WriteLine(TopTwo[i].type + " "+i+" :type  ");
@@ -85,8 +85,8 @@ namespace Test_Framework.GlobalStatistics
             for (int i = 0; i < BottomOne.Length; i++)
             {
                 Console.WriteLine(BottomOne.Length + ":length ");
-                Console.WriteLine(BottomOne[i].AssingmentName + " " + i + " :A.Name  ");
-                Console.WriteLine(BottomOne[i].AssingmentID + " " + i + " :A.ID  ");
+                Console.WriteLine(BottomOne[i].AssignmentName + " " + i + " :A.Name  ");
+                Console.WriteLine(BottomOne[i].AssignmentID + " " + i + " :A.ID  ");
                 Console.WriteLine(BottomOne[i].Grade + " " + i + " :Grade  ");
                 Console.WriteLine(BottomOne[i].ReviewerID + " " + i + " :R.ID  ");
                 Console.WriteLine(BottomOne[i].type + " " + i + " :type  ");
@@ -101,8 +101,8 @@ namespace Test_Framework.GlobalStatistics
             for (int i = 0; i < BottomTwo.Length; i++)
             {
                 Console.WriteLine(BottomTwo.Length + ":length ");
-                Console.WriteLine(BottomTwo[i].AssingmentName + " " + i + " :A.Name  ");
-                Console.WriteLine(BottomTwo[i].AssingmentID + " " + i + " :A.ID  ");
+                Console.WriteLine(BottomTwo[i].AssignmentName + " " + i + " :A.Name  ");
+                Console.WriteLine(BottomTwo[i].AssignmentID + " " + i + " :A.ID  ");
                 Console.WriteLine(BottomTwo[i].Grade + " " + i + " :Grade  ");
                 Console.WriteLine(BottomTwo[i].ReviewerID + " " + i + " :R.ID  ");
                 Console.WriteLine(BottomTwo[i].type + " " + i + " :type  ");

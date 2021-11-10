@@ -1,10 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using CSAMS.APIModels;
 
 namespace CSAMS.Models
 {
-    public class Assignments
+    public class Assignments : IAPIModel
     {
         [Key]
         [MaxLength(11)]
@@ -38,5 +39,22 @@ namespace CSAMS.Models
         [MaxLength(11)]
         public int Reviewers { get; set; }
 
+
+        public bool AssertEqual(IAPIModel other)
+        {
+            var otherModel = other as Assignments;
+            return (otherModel.ID == ID &&
+                otherModel.Name == Name &&
+                otherModel.Description == Description &&
+                otherModel.Created == Created &&
+                otherModel.PublishedDate == PublishedDate &&
+                otherModel.Deadline == Deadline &&
+                otherModel.CourseID == CourseID &&
+                otherModel.SubmissionID == SubmissionID &&
+                otherModel.ReviewEnabled == ReviewEnabled &&
+                otherModel.ReviewID == ReviewID &&
+                otherModel.ReviewDeadline == ReviewDeadline &&
+                otherModel.Reviewers == Reviewers);
+        }
     }
 }

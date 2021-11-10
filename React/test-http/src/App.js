@@ -14,6 +14,7 @@ import AssiComments from './components/AssiComments';
 import Statistics from './components/Statistics';
 import PostForm from './components/PostForm';
 import ReviewerComments from './components/ReviewerComments';
+import ShowBoxplot from './components/ShowBoxplot';
 
 function App() {
     return (
@@ -23,24 +24,16 @@ function App() {
                 <Route path='/' exact>
                     <h1>
 
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                        occaecat cupidatat non proident, sunt in culpa qui
-                        officia deserunt mollit anim id est laborum.
+                        We don't make mistakes, just happy little accidents.
 
-      </h1>
+                    </h1>
                 </Route>
             </div>
             <Route path='/User' >
                 <PostListAgain />
-
             </Route>
 
-            
+
             <Route path='/Comments' >
                 <Comments />
             </Route>
@@ -65,6 +58,40 @@ function App() {
 
             <Route path='/Statistics' >
                 <Statistics />
+            </Route>
+
+            <Route path='/ShowBoxplot' >
+                <ShowBoxplot values={[88,
+                    30,
+                    68,
+                    53,
+                    36,
+                    42,
+                    66,
+                    26,
+                    15,
+                    64,
+                    76,
+                    29,
+                    78,
+                    77,
+                    22,
+                    33,
+                    65,
+                    62,
+                    10,
+                    61,
+                    60,
+                    43,
+                    49,
+                    18,
+                    74,
+                    50,
+                    82,
+                    35,
+                    100,
+                    1
+                ]} />
             </Route>
 
         </Router>

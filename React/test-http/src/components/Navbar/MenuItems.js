@@ -41,19 +41,16 @@ export const MenuItems = [
         cName:'nav-links'
     },
     {
-        title:'Sign up',
-        url:'#',
-        cName:'nav-links-mobile'
-    }
-        title: 'Sign up',
-        url: '#',
-        cName: 'nav-links-mobile'
-    },
-    {
         title: 'Boxplot',
         url: 'http://localhost:3000/ShowBoxplot',
         cName: 'nav-links'
     },
+    {
+        title:'Sign up',
+        url:'#',
+        cName:'nav-links-mobile'
+    },
+   
 
 
 

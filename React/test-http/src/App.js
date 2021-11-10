@@ -63,6 +63,8 @@ function App() {
 
             <Route path='/Top' >
                 <Top />
+            </Route>
+
             <Route path='/ShowBoxplot' >
                 <ShowBoxplot values={[88,
                     30,

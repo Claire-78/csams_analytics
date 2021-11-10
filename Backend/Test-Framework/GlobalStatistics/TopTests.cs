@@ -16,14 +16,14 @@ namespace Test_Framework.GlobalStatistics
         public readonly TopModel[] ExpectedProjectResultTopOne =
             {
                 new TopModel{Grade= 4,AssingmentName= "Cloud 2021 - Assignment 2",AssingmentID= 6,ReviewerID=33, type= "top"}
-             //  new TopModel{Grade= 5,AssingmentName= "PROG2006 Assignment 1 tic-tac-roll",AssingmentID= 5,type= "Top"},
-             //new TopModel{Grade= 40,AssingmentName= "Cloud 2021 - Assignment 1",AssingmentID= 1,type= "Top"}
+             //  new TopModel{Grade= 5,AssingmentName= "PROG2006 Assignment 1 tic-tac-roll",AssingmentID= 5,type= "top"},
+             //new TopModel{Grade= 40,AssingmentName= "Cloud 2021 - Assignment 1",AssingmentID= 1,type= "top"}
             };
 
         public readonly TopModel[] ExpectedProjectResulToptTwo = 
         {
-                    new TopModel{Grade= 3.62F,AssingmentName= "Cloud 2021 - Assignment 1",AssingmentID= 1,ReviewerID=27, type="top"},
-               new TopModel{Grade= 3.31F,AssingmentName= "Cloud 2021 - Assignment 2",AssingmentID= 6,ReviewerID=33, type="top"}
+                   new TopModel{Grade=1.21F,AssingmentName= "PROG2006 Assignment 1 tic-tac-roll",AssingmentID= 5,ReviewerID=97,type= "top"},
+               new TopModel{Grade= 2.79F,AssingmentName= "Cloud 2021 - Assignment 1",AssingmentID= 1,ReviewerID=19,type= "top"}
             // new TopModel{Grade= 1,AssingmentName= "Cloud 2021 - Assignment 2",AssingmentID= 6,type= "Bottom"}
             
         
@@ -37,7 +37,7 @@ namespace Test_Framework.GlobalStatistics
 
         public readonly TopModel[] ExpectedProjectResulBottomtTwo =
         {
-                   new TopModel{Grade= 1.21F,AssingmentName= "PROG2006 Assignment 1 tic-tac-roll",AssingmentID= 5,ReviewerID=97, type= "top"}
+                   new TopModel{Grade= 3.62F,AssingmentName= "Cloud 2021 - Assignment 1",AssingmentID= 1,ReviewerID=27, type= "top"}
 
 
         };

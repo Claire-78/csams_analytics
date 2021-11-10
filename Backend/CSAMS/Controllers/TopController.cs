@@ -310,7 +310,7 @@ namespace CSAMS.Controllers
 
                        .Where(r => r != null)
 
-                         .OrderByDescending(p => p.Grade)
+                         .OrderBy(p => p.Grade)
 
                          .Take(N)
 
@@ -323,7 +323,7 @@ namespace CSAMS.Controllers
                         .GroupBy(r => r.UserReviewer)
                        .Select(r => TopController.TopProjects(r.ToArray(), fields, IsProject, average))
                        .Where(r => r != null)
-                       .OrderBy(p => p.Grade)
+                       .OrderByDescending(p => p.Grade)
                        .Take(N)
                        .ToArray();
 

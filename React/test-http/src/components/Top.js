@@ -15,7 +15,7 @@ class Top extends Component {
 
     componentDidMount() {
         axios
-            .get('https://localhost:44344/api/Top/top')
+            .get('https://localhost:44344/api/Top/top/3/Top/true')
             .then(response => {
                 console.log(response)
                 this.setState({ posts: response.data })
@@ -35,12 +35,15 @@ class Top extends Component {
                     <td style={{ border: "1px solid rgb(0, 0, 0)", width: 300 }}>Grade</td>
                     <td style={{ border: "1px solid rgb(0, 0, 0)", width: 300 }}>Assignment name</td>
                     <td style={{ border: "1px solid rgb(0, 0, 0)", width: 200 }}>Assignment ID</td>
+                    <td style={{ border: "1px solid rgb(0, 0, 0)", width: 200 }}>Reviewer ID</td>
+
                 </tr>
                 {posts.map(row => (
                     <tr key={row.id} style={{ display: 'flex', justifyContent: 'center' }}>
                         <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 300 }}>{row.grade}</td>
                         <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 300 }}>{row.assignmentName}</td>
                         <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 200 }}>{row.assignmentID}</td>
+                        <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 200 }}>{row.reviewerID}</td>
                     </tr>
                 ))}
 

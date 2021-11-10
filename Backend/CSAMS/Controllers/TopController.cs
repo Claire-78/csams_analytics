@@ -147,6 +147,7 @@ namespace CSAMS.Controllers
                 .Where(ur => ur.r.Answer != null)
                 .Where(ur => ur.r.Assignment != null)
                 .Where(ur => ur.r.Type == "radio")
+                .Where(ur=>ur.Item2!=0)
                 .ToArray();
                   
             if (IsProject == true)
@@ -170,7 +171,7 @@ namespace CSAMS.Controllers
                 if (child.Length == 0)
                     return null;
                 Console.WriteLine(child2[0].ReviewerID);
-                var ret = child2.Average(r => r.Grade);
+                var ret = child2.Sum(r => r.Grade) / child.Sum(ur => ur.Item2);
                 TopModel model = new TopModel { Grade = MathF.Round(ret, 2), AssingmentID = child2[0].AssingmentID, AssingmentName = child2[0].AssingmentName,ReviewerID=child2[0].ReviewerID, type = "top" };
                 return model;
             }
@@ -193,7 +194,7 @@ namespace CSAMS.Controllers
                     Console.WriteLine(child.Length);
                     if (child.Length == 0)
                         return null;
-                    var ret = child2.Average(r => r.Grade);
+                    var ret = child2.Sum(r => r.Grade)/child.Sum(ur => ur.Item2);
                     TopModel model = new TopModel { Grade = MathF.Round(ret, 2), AssingmentID = child2[0].AssingmentID, AssingmentName = child2[0].AssingmentName, ReviewerID = child2[0].ReviewerID, type = "top" };
                     return model;
                 }
@@ -213,8 +214,13 @@ namespace CSAMS.Controllers
         {
             var child =
                     userReviews
-                    .Select(r => (r, fields.Where(f => f.FormID == r.Review.FormID).Where(f => f.Name == r.Name).FirstOrDefault().Weight)).Where(ur => ur.r.Answer != null).Where(ur => ur.r.Type == "radio")
-
+                    .Select(r => (r, fields
+                    .Where(f => f.FormID == r.Review.FormID)
+                    .Where(f => f.Name == r.Name)
+                    .FirstOrDefault().Weight))
+                    .Where(ur => ur.r.Answer != null)
+                    .Where(ur => ur.r.Type == "radio").Where(ur => ur.Item2 != 0);
+            var child2 = child
                     .OrderBy(ur => ur.r.UserTarget).OrderByDescending(ur => int.Parse(ur.r.Answer) * ur.Item2)
                    .Select(ur => new TopModel
                    {
@@ -222,9 +228,9 @@ namespace CSAMS.Controllers
                    })
                     .ToArray();
 
-            if (child.Length == 0)
+            if (child2.Length == 0)
                 return 0;
-            return child.Average(r => r.Grade);
+            return child2.Sum(r => r.Grade)/child.Sum(ur => ur.Item2);
         }
 
 

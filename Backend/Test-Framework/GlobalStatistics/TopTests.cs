@@ -15,15 +15,15 @@ namespace Test_Framework.GlobalStatistics
     {
         public readonly TopModel[] ExpectedProjectResultTopOne =
             {
-                new TopModel{Grade= 22,AssingmentName= "Cloud 2021 - Assignment 2",AssingmentID= 6,ReviewerID=33, type= "top"}
+                new TopModel{Grade= 4,AssingmentName= "Cloud 2021 - Assignment 2",AssingmentID= 6,ReviewerID=33, type= "top"}
              //  new TopModel{Grade= 5,AssingmentName= "PROG2006 Assignment 1 tic-tac-roll",AssingmentID= 5,type= "Top"},
              //new TopModel{Grade= 40,AssingmentName= "Cloud 2021 - Assignment 1",AssingmentID= 1,type= "Top"}
             };
 
         public readonly TopModel[] ExpectedProjectResulToptTwo = 
         {
-                    new TopModel{Grade= 24.83F,AssingmentName= "Cloud 2021 - Assignment 1",AssingmentID= 1,ReviewerID=27, type="top"},
-               new TopModel{Grade= 18,AssingmentName= "Cloud 2021 - Assignment 2",AssingmentID= 6,ReviewerID=33, type="top"}
+                    new TopModel{Grade= 3.62F,AssingmentName= "Cloud 2021 - Assignment 1",AssingmentID= 1,ReviewerID=27, type="top"},
+               new TopModel{Grade= 3.31F,AssingmentName= "Cloud 2021 - Assignment 2",AssingmentID= 6,ReviewerID=33, type="top"}
             // new TopModel{Grade= 1,AssingmentName= "Cloud 2021 - Assignment 2",AssingmentID= 6,type= "Bottom"}
             
         
@@ -31,13 +31,13 @@ namespace Test_Framework.GlobalStatistics
 
         public readonly TopModel[] ExpectedProjectResultBottomOne =
            {
-                   new TopModel{Grade= 20.5F,AssingmentName= "Cloud 2021 - Assignment 1",AssingmentID= 1,ReviewerID=27, type= "top"},
+                   new TopModel{Grade= 3.73F,AssingmentName= "Cloud 2021 - Assignment 1",AssingmentID= 1,ReviewerID=27, type= "top"},
                        new TopModel{Grade= 3,AssingmentName= "PROG2006 Assignment 1 tic-tac-roll",AssingmentID= 5,ReviewerID=97, type= "top"}
             };
 
         public readonly TopModel[] ExpectedProjectResulBottomtTwo =
         {
-                   new TopModel{Grade= 10.17F,AssingmentName= "PROG2006 Assignment 1 tic-tac-roll",AssingmentID= 5,ReviewerID=97, type= "top"}
+                   new TopModel{Grade= 1.21F,AssingmentName= "PROG2006 Assignment 1 tic-tac-roll",AssingmentID= 5,ReviewerID=97, type= "top"}
 
 
         };

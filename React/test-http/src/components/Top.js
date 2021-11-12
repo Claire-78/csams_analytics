@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Button} from 'react-bootstrap';
-import ReactDOM from 'react-dom';
+
 class Top extends Component {
     constructor(props) {
         super(props)
@@ -13,7 +12,11 @@ class Top extends Component {
             Type:'',
             IsProject:'',
             site:'https://localhost:44344/api/Top/top',
-            Submited:false
+            Submited:false,
+            TopsClicked:false,
+            BottomsClicked:false,
+           ProjectsClicked:false,
+           ReviewersClicked:false
         }
     }
   
@@ -29,10 +32,10 @@ class Top extends Component {
             }
 
 doSomething(){
-   // this.forceUpdate()
+        this.forceUpdate()
             console.log(this.state)
            
-           
+           if(this.state.Submited===true){
             axios
                 .get(this.state.site)
                 .then(response => {
@@ -46,40 +49,51 @@ doSomething(){
                 })
                // this.setState({Submited:false})
            }
-        
+        }
+           dosomethingmore(){
+            this.setState({site:this.state.site+'/'+this.state.N+'/'+this.state.Type+'/'+this.state.IsProject})
+            this.setState({Submited:true})
 
+            }
         submitHandler = (e) => {
             this.setState({[e.target.name]:e.target.value})
-            this.forceUpdate()
+            
 
             this.setState({Type:this.Capitalize(this.state.Type)})
             this.setState({Type:this.Capitalize(this.state.IsProject)})     
             if(this.state.N<1||this.state.N>300){
                 this.setState({ errorMsg2: ' Error in imput field 1. Provide possitive number (within reason)' })
             }
-            this.setState({Type:this.Capitalize(this.state.Type)})
-            if(this.state.Type!=='Top'||this.state.Type!=='Bottom'){
-                this.setState({ errorMsg2: ' Error in imput field 2' })
-            }
-            this.setState({IsProject:this.Capitalize(this.state.IsProject)})
-            console.log(this.state+" WTF!!!")
-            if(this.state.IsProject==='Projects' || this.Capitalize(this.state.IsProject)==='True'){
-                this.setState({IsProject:'true'})
-            }else if(this.state.IsProject==='Reviewers' || this.Capitalize(this.state.IsProject)==='False'){
-                this.setState({IsProject:'false'})
-            }
-            else{
-                this.setState({ errorMsg2: ' Error in imput field 3' })
-            }
-            this.setState({site:this.state.site+'/'+this.state.N+'/'+this.state.Type+'/'+this.state.IsProject})
-          this.setState({Submited:true})
-          
+            // this.setState({Type:this.Capitalize(this.state.Type)})
+            // if(this.state.Type!=='Top'||this.state.Type!=='Bottom'){
+            //     this.setState({ errorMsg2: ' Error in imput field 2' })
+            // }
+            // this.setState({IsProject:this.Capitalize(this.state.IsProject)})
+        
+            // if(this.state.IsProject==='Projects' || this.Capitalize(this.state.IsProject)==='True'){
+            //     this.setState({IsProject:'true'})
+            // }else if(this.state.IsProject==='Reviewers' || this.Capitalize(this.state.IsProject)==='False'){
+            //     this.setState({IsProject:'false'})
+            // }
+            // else{
+            //     this.setState({ errorMsg2: ' Error in imput field 3' })
+            // }
+           // this.setState({site:this.state.site+'/'+this.state.N+'/'+this.state.Type+'/'+this.state.IsProject})
+         // this.setState({Submited:true})
+             this.dosomethingmore()
             e.preventDefault()
             this.doSomething()
+            this.forceUpdate()
  
         }
     //clickHandler() { }
    
+        onChangeValue(event){
+            this.setState({Type:EventTarget.value})
+            console.log(this.state)
+        }
+
+
     render() {
         const { posts, errorMsg,errorMsg2,N,Type,IsProject } = this.state
         let n = 0
@@ -87,7 +101,7 @@ doSomething(){
         let message
         if(this.state.Submited===false){
             message=<div>Please enter N,Top or Bottom and Projects or Reviewers</div>
-        } else{
+        } else {
             console.log(this.state)
         message=  <div style={{ textAlign: 'center' }}>
     <tr style={{ display: 'flex', justifyContent: 'center' }}>
@@ -121,24 +135,58 @@ doSomething(){
             <div style={{border: 'outset',textAlign:'center'}}>
            
            
-           <View style={styles.buttonStyleContainer}>
-            <Button
+           <div >
+               Top or Bottom:
+
+               
+               <button
              title={"Top"}
-             style={styles.buttonStyle}
-             onPress={() => {
-               this.setState({ IsProject: Top });
+           
+             onClick={() => {
+               this.setState({ Type: 'Top' });
+               this.setState({TopClicked:true });
              }}
               color="#841584"
-            />
-              <Button
-                 title={"Bottom"}
-                onPress={() => {
-                this.setState({ IsProject: Bottom });
+              
+            >Top</button>
+         <button
+             title={"Bottom"}
+           
+             onClick={() => {
+               this.setState({ Type: 'Bottom' });
+               this.setState({BottomClicked:true });
+               console.log(this.state)
              }}
-             color="green"
-           />
+              color="#841584"
+            >Bottom</button>
+    
+      </div>
 
-         </View>
+      <div >
+               Projects or Reviewers:
+
+               
+               <button
+             title={"Projects"}
+           
+             onClick={() => {
+               this.setState({ IsProject: 'true' });
+               this.setState({ProjectsClicked:true });
+             }}
+              color="#841584"
+            >Projects</button>
+         <button
+             title={"Reviewers"}
+           
+             onClick={() => {
+               this.setState({IsProject:'false' });
+               this.setState({ReviewersClicked:true });
+               console.log(this.state)
+             }}
+              color="#841584"
+            >Reviewers</button>
+    
+      </div>
            
             <form onSubmit={this.submitHandler}>
                 <div>

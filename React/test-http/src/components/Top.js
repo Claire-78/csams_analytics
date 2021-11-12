@@ -32,7 +32,7 @@ class Top extends Component {
             }
 
 doSomething(){
-        this.forceUpdate()
+      
             console.log(this.state)
            
            if(this.state.Submited===true){
@@ -59,8 +59,8 @@ doSomething(){
             this.setState({[e.target.name]:e.target.value})
             
 
-            this.setState({Type:this.Capitalize(this.state.Type)})
-            this.setState({Type:this.Capitalize(this.state.IsProject)})     
+          //  this.setState({Type:this.Capitalize(this.state.Type)})
+         //   this.setState({IsProject:this.Capitalize(this.state.IsProject)})     
             if(this.state.N<1||this.state.N>300){
                 this.setState({ errorMsg2: ' Error in imput field 1. Provide possitive number (within reason)' })
             }
@@ -78,12 +78,13 @@ doSomething(){
             // else{
             //     this.setState({ errorMsg2: ' Error in imput field 3' })
             // }
-           // this.setState({site:this.state.site+'/'+this.state.N+'/'+this.state.Type+'/'+this.state.IsProject})
-         // this.setState({Submited:true})
-             this.dosomethingmore()
+            this.setState({Submited:true})
+            this.setState({site:this.state.site+'/'+this.state.N+'/'+this.state.Type+'/'+this.state.IsProject},()=>{ this.doSomething()})
+          
+           
             e.preventDefault()
-            this.doSomething()
-            this.forceUpdate()
+           // this.doSomething()
+          
  
         }
     //clickHandler() { }
@@ -154,7 +155,7 @@ doSomething(){
            
              onClick={() => {
                this.setState({ Type: 'Bottom' });
-               this.setState({BottomClicked:true });
+               this.setState({TopClicked:false });
                console.log(this.state)
              }}
               color="#841584"
@@ -180,7 +181,7 @@ doSomething(){
            
              onClick={() => {
                this.setState({IsProject:'false' });
-               this.setState({ReviewersClicked:true });
+               this.setState({ProjectsClicked:false });
                console.log(this.state)
              }}
               color="#841584"

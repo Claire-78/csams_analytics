@@ -15,6 +15,7 @@ import Statistics from './components/Statistics';
 import PostForm from './components/PostForm';
 import ReviewerComments from './components/ReviewerComments';
 import ShowBoxplot from './components/ShowBoxplot';
+import Top from './components/Top';
 
 function App() {
     return (
@@ -59,6 +60,11 @@ function App() {
             <Route path='/Statistics' >
                 <Statistics />
             </Route>
+            <Route path='/Top' >
+                <Top />
+            </Route>
+
+
 
             <Route path='/ShowBoxplot' >
                 <ShowBoxplot values={[88,

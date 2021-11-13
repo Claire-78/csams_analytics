@@ -9,15 +9,36 @@ class AssiComments extends Component {
             posts: [],
             errorMsg: ''
         }
+
+        this.data = {
+            ID: parseInt(props.match.params.id),
+            AnswerType: "",
+            Answer: "",
+            Comment: ""
+        }
     }
 
     clickHandler() { }
+
+    changeHandler = (e) => {
+        this.setState({ [e.target.name]: e.target.value })
+    }
+
+    submitHandler = (e) => {
+        e.preventDefault()
+        this.componentDidMount()
+    }
 
     componentDidMount() {
         const { id } = this.props.match.params
         console.log(id)
         axios
-            .get('https://localhost:44344/api/comment/project/' + id)
+            .get('https://localhost:44344/api/comment/project/', this.data, {
+                headers: {
+                    'content-type': 'application/json',
+                    "Access-Control-Allow-Origin": "*"
+                }
+            })
             .then(response => {
                 console.log(response)
                 this.setState({ posts: response.data })
@@ -42,6 +63,29 @@ class AssiComments extends Component {
                         <td style={{ border: "1px solid rgb(0, 0, 0)", width: 100 }}>Answer</td>
                         <td style={{ border: "1px solid rgb(0, 0, 0)", width: 1000 }}>Comment</td>
                     </tr>
+                    <form onSubmit={this.submitHandler}>
+                        <tr style={{ display: 'flex', justifyContent: 'center' }}>
+                            <td style={{ width: 100 }}></td>
+                            <td style={{ border: "1px solid rgb(0, 0, 0)", width: 100 }}></td>
+                            <td style={{ border: "1px solid rgb(0, 0, 0)", width: 100 }}></td>
+                            <td style={{ border: "1px solid rgb(0, 0, 0)", width: 150 }}>
+                                <div>
+                                    <input type='text' name='answerType' value={this.data.AnswerType} onChange={this.changeHandler} placeholder='Answer Type' style={{ width: 140 }} />
+                                </div>
+                            </td>
+                            <td style={{ border: "1px solid rgb(0, 0, 0)", width: 100 }}>
+                                <div>
+                                    <input type='text' name='answer' value={this.data.Answer} onChange={this.changeHandler} placeholder='Answer' style={{ width: 90 }} />
+                                </div>
+                            </td>
+                            <td style={{ border: "1px solid rgb(0, 0, 0)", width: 1000 }}>
+                                <div>
+                                    <input type='text' name='comment' value={this.data.Comment} onChange={this.changeHandler} placeholder='Comment' style={{ width: 990 }} />
+                                </div>
+                            </td>
+                            <td style={{ width: 100 }}><button type='submit'>Submit </button></td>
+                        </tr>
+                    </form>
                     {posts.map(row => (
                         <tr style={{ display: 'flex', justifyContent: 'center' }}>
                             <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 100 }}>{row.target}</td>

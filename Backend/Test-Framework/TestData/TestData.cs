@@ -41,7 +41,7 @@ namespace Test_Framework.TestData
             new Reviews {ID = 3, FormID = 6},
             new Reviews {ID = 4, FormID = 8},
             new Reviews {ID = 5, FormID = 10},
-            new Reviews {ID = 6, FormID = 12},
+            new Reviews {ID = 6, FormID = 12}
         };
 
         public static readonly Assignments Assignment1 =
@@ -61,6 +61,7 @@ namespace Test_Framework.TestData
             new UserReviews {ID = 8, UserTarget = 2, UserReviewer = 3, Name = "assi2_review_03", Type = "radio", Answer = "5", AssignmentID = 2, ReviewID = 2, Comment = null},
             new UserReviews {ID = 9, UserTarget = 3, UserReviewer = 1, Name = "assi1_review_01", Type = "radio", Answer = "2", AssignmentID = 1, ReviewID = 1, Comment = null},
             new UserReviews {ID = 10, UserTarget = 3, UserReviewer = 1, Name = "assi1_review_02", Type = "radio", Answer = "6", AssignmentID = 1, ReviewID = 1, Comment = "This is fantastic. Well done work"},
+<<<<<<< HEAD
               new UserReviews {ID =3524, UserTarget = 115, UserReviewer = 95, Name = "prog2006_assignment_1_review_1", Type = "radio", Answer = "4", AssignmentID = 5, ReviewID = 4, Comment = null},
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -70,6 +71,9 @@ namespace Test_Framework.TestData
 >>>>>>> 6414ffe4706d8ed1dc966337089afd9af6f73e3e
 =======
 >>>>>>> 6414ffe4706d8ed1dc966337089afd9af6f73e3e
+=======
+            new UserReviews {ID = 3524, UserTarget = 115, UserReviewer = 95, Name = "prog2006_assignment_1_review_1", Type = "radio", Answer = "4", AssignmentID = 5, ReviewID = 4, Comment = null},
+>>>>>>> 8c2cc9cbd1237a69cf83fa1a18c920ed3efc6ee5
         };
 
         public static readonly Roles[] RolesTest =
@@ -81,47 +85,37 @@ namespace Test_Framework.TestData
 
         public static readonly Users[] UsersTest =
         {
-            new Users { ID = 1, Role = 3},
-            new Users { ID = 2, Role = 3},
-            new Users { ID = 3, Role = 3},
-            new Users { ID = 4, Role = 1},
-            new Users { ID = 5, Role = 3},
-            new Users { ID = 6, Role = 3},
-            new Users { ID = 7, Role = 3},
-            new Users { ID = 8, Role = 3},
-            new Users { ID = 9, Role = 2},
-            new Users { ID = 10, Role = 2}
+            new Users {ID = 1, Role = 3},
+            new Users {ID = 2, Role = 3},
+            new Users {ID = 3, Role = 3},
+            new Users {ID = 4, Role = 1},
+            new Users {ID = 5, Role = 3},
+            new Users {ID = 6, Role = 3},
+            new Users {ID = 7, Role = 3},
+            new Users {ID = 8, Role = 3},
+            new Users {ID = 9, Role = 2},
+            new Users {ID = 10, Role = 2}
         };
 
         public static readonly UserReviews[] TopTestsOne =
         {
-             new UserReviews{Answer= "4",Name= "prog2005_assignment_02_review_20",AssignmentID=6,ReviewID=6,UserReviewer=33,UserTarget=19,Type="radio", Review = new Reviews{ ID=6, FormID=12 }, Assignment= new Assignments{ID=6,Name="Cloud 2021 - Assignment 2" }},
-           new UserReviews{Answer= "4",Name= "prog2005_assignment_01_review_3",AssignmentID=1,ReviewID=27,UserReviewer=27,UserTarget=8,Type="radio", Review = new Reviews{ ID=3, FormID=7  }, Assignment= new Assignments{ID=1,Name="Cloud 2021 - Assignment 1"}},
-               new UserReviews{Answer= "5",Name= "prog2006_assignment_1_review_1",AssignmentID=5,ReviewID=4,UserReviewer=97,UserTarget=83,Type="radio", Review = new Reviews{ ID=4, FormID=9 }, Assignment= new Assignments{ID=5,Name="PROG2006 Assignment 1 tic-tac-roll" }},   
-             new UserReviews{Answer= "1",Name= "prog2005_assignment_01_review_1",AssignmentID=1,ReviewID=3,UserReviewer=19,UserTarget=6,Type="radio", Review = new Reviews{ ID=3, FormID=7 }, Assignment= new Assignments{ID=1,Name="Cloud 2021 - Assignment 1" }},
-                new UserReviews{Answer= "4",Name= "prog2005_assignment_02_review_2",AssignmentID=6,ReviewID=6,UserReviewer=33,UserTarget=8,Type="radio", Review = new Reviews{ ID=6, FormID=12 }, Assignment= new Assignments{ID=6,Name="Cloud 2021 - Assignment 2" }},
-                  new UserReviews{Answer= "1",Name= "prog2006_assignment_1_review_3",AssignmentID=5,ReviewID=4,UserReviewer=92,UserTarget=129,Type="radio", Review = new Reviews{ ID=4, FormID=9 }, Assignment= new Assignments{ID=5,Name="PROG2006 Assignment 1 tic-tac-roll" } }
-
-
+           new UserReviews{Answer = "4", Name = "prog2005_assignment_02_review_20", AssignmentID = 6, ReviewID = 6, UserReviewer = 33, UserTarget = 19, Type = "radio", Review = new Reviews{ID = 6, FormID = 12}, Assignment = new Assignments{ID = 6, Name="Cloud 2021 - Assignment 2"}},
+           new UserReviews{Answer = "4", Name = "prog2005_assignment_01_review_3", AssignmentID = 1, ReviewID = 27, UserReviewer = 27, UserTarget = 8, Type = "radio", Review = new Reviews{ID = 3, FormID = 7}, Assignment = new Assignments{ID = 1, Name="Cloud 2021 - Assignment 1"}},
+           new UserReviews{Answer = "5", Name = "prog2006_assignment_1_review_1", AssignmentID = 5, ReviewID = 4, UserReviewer = 97, UserTarget = 83, Type = "radio", Review = new Reviews{ID = 4, FormID = 9}, Assignment = new Assignments{ID = 5, Name="PROG2006 Assignment 1 tic-tac-roll"}},
+           new UserReviews{Answer = "1", Name = "prog2005_assignment_01_review_1", AssignmentID = 1, ReviewID = 3, UserReviewer = 19, UserTarget = 6, Type = "radio", Review = new Reviews{ID = 3, FormID = 7}, Assignment = new Assignments{ID = 1, Name="Cloud 2021 - Assignment 1"}},
+           new UserReviews{Answer = "4", Name = "prog2005_assignment_02_review_2", AssignmentID = 6, ReviewID = 6, UserReviewer = 33, UserTarget = 8, Type = "radio", Review = new Reviews{ID = 6, FormID = 12}, Assignment = new Assignments{ID = 6, Name="Cloud 2021 - Assignment 2"}},
+           new UserReviews{Answer = "1", Name = "prog2006_assignment_1_review_3", AssignmentID = 5, ReviewID = 4, UserReviewer = 92, UserTarget = 129, Type = "radio", Review = new Reviews{ID = 4, FormID = 9}, Assignment = new Assignments{ID = 5, Name="PROG2006 Assignment 1 tic-tac-roll"}}
         };
 
         public static readonly Fields[] TopTestsFields =
         {
-            new Fields{Weight=10,Type="radio", Name="prog2005_assignment_02_review_2",FormID=12},
-             new Fields{Weight=1,Type="radio", Name="prog2005_assignment_02_review_20",FormID=12},
-              new Fields{Weight=1,Type="radio", Name="prog2006_assignment_1_review_1",FormID=9},
-               new Fields{Weight=1,Type="radio", Name="prog2006_assignment_1_review_3",FormID=9},
-                 new Fields{Weight=10,Type="radio", Name="prog2005_assignment_01_review_3",FormID=7},
-                 new Fields{Weight=1,Type="radio", Name="prog2005_assignment_02_review_20",FormID=12},
-                 new Fields{Weight=1,Type="radio", Name="prog2005_assignment_01_review_1",FormID=7},
-
-
-
-
+            new Fields{Weight = 10, Type = "radio", Name = "prog2005_assignment_02_review_2", FormID = 12},
+            new Fields{Weight = 1, Type = "radio", Name = "prog2005_assignment_02_review_20", FormID = 12},
+            new Fields{Weight = 1, Type = "radio", Name = "prog2006_assignment_1_review_1", FormID = 9},
+            new Fields{Weight = 1, Type = "radio", Name = "prog2006_assignment_1_review_3", FormID = 9},
+            new Fields{Weight = 10, Type = "radio", Name = "prog2005_assignment_01_review_3", FormID = 7},
+            new Fields{Weight = 1, Type = "radio", Name = "prog2005_assignment_02_review_20", FormID = 12},
+            new Fields{Weight = 1, Type = "radio", Name = "prog2005_assignment_01_review_1", FormID = 7}
         };
-
-
-    
-
     }
 }

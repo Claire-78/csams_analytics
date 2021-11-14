@@ -93,6 +93,7 @@ class Statistics extends Component {
 			<StatisticsList key={post.id} post={post}></StatisticsList >
 
 		))
+		const statsNum = userReviews.map(i => (Number(i.answer)))
 		return (
 			<div>
 				<h1>
@@ -125,7 +126,7 @@ class Statistics extends Component {
 					<h1>
 						Boxplot
 					</h1>
-					<ShowBoxplot />
+					{statsNum.length !== 0 ? ShowBoxplot(statsNum) : ''}
 				</div>
 				<div>
 					<h1>

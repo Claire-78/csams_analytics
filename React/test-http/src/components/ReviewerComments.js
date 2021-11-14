@@ -30,7 +30,7 @@ class ReviewerComments extends Component {
 
     render() {
         const { posts, errorMsg } = this.state
-        if (errorMsg == '') {
+        if (errorMsg ==='') {
             console.log(errorMsg)
             let n = 0
             return (

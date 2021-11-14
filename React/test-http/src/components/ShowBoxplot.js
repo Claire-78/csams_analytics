@@ -1,6 +1,5 @@
 import React from 'react'
 import { Boxplot, computeBoxplotStats } from 'react-boxplot'
-import StatisticsList from './StatisticsList'
 console.log("You have gotten to the right page")
 
 // Values for testing purpose only
@@ -42,14 +41,15 @@ const ShowBoxplot = () => {
     // min, max, mean, median, Q1, Q3, SD
     // min = whiskerlow, max = whiskerhigh, Q1 = quartile1, Q3 = quartile3, median = quartile3
 
+    // temp
     const stats = computeBoxplotStats(values)
+
+    // const statlist = int(values)
+    // statlist[0] etc
     return (
 
 
         <div>
-            <h1>
-                Boxplot
-            </h1>
             <Boxplot
                 width={600}
                 height={300}

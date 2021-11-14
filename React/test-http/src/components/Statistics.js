@@ -122,6 +122,9 @@ class Statistics extends Component {
 					{errorMsg1 ? <div>{errorMsg1}</div> : null}
 				</div>
 				<div>
+					<h1>
+						Boxplot
+					</h1>
 					<ShowBoxplot />
 				</div>
 				<div>

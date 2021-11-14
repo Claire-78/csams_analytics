@@ -14,7 +14,6 @@ import AssiComments from './components/AssiComments';
 import Statistics from './components/Statistics';
 import PostForm from './components/PostForm';
 import ReviewerComments from './components/ReviewerComments';
-import ShowBoxplot from './components/ShowBoxplot';
 
 function App() {
     return (
@@ -58,40 +57,6 @@ function App() {
 
             <Route path='/Statistics' >
                 <Statistics />
-            </Route>
-
-            <Route path='/ShowBoxplot' >
-                <ShowBoxplot values={[88,
-                    30,
-                    68,
-                    53,
-                    36,
-                    42,
-                    66,
-                    26,
-                    15,
-                    64,
-                    76,
-                    29,
-                    78,
-                    77,
-                    22,
-                    33,
-                    65,
-                    62,
-                    10,
-                    61,
-                    60,
-                    43,
-                    49,
-                    18,
-                    74,
-                    50,
-                    82,
-                    35,
-                    100,
-                    1
-                ]} />
             </Route>
 
         </Router>

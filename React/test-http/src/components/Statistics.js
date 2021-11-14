@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import UserReviewsList from './userReviewsList'
 import StatisticsList from './StatisticsList'
+import ShowBoxplot from './ShowBoxplot'
 
 class Statistics extends Component {
 	constructor(props) {
@@ -92,6 +93,7 @@ class Statistics extends Component {
 			<StatisticsList key={post.id} post={post}></StatisticsList >
 
 		))
+		const statsNum = userReviews.map(i => (Number(i.answer)))
 		return (
 			<div>
 				<h1>
@@ -120,7 +122,12 @@ class Statistics extends Component {
 					{statisticslist}
 					{errorMsg1 ? <div>{errorMsg1}</div> : null}
 				</div>
-
+				<div>
+					<h1>
+						Boxplot
+					</h1>
+					{statsNum.length !== 0 ? ShowBoxplot(statsNum) : ''}
+				</div>
 				<div>
 					<h1>
 						Comments

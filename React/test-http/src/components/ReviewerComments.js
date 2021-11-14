@@ -7,14 +7,12 @@ class ReviewerComments extends Component {
 
         this.state = {
             posts: [],
-            errorMsg: ''
-        }
-
-        this.data = {
+            errorMsg: '',
             ID: parseInt(props.match.params.id),
-            AnswerType: "",
-            Answer: "",
-            Comment: ""
+                AnswerType: "",
+                Answer: "",
+                Comment: ""
+            
         }
     }
 
@@ -32,7 +30,7 @@ class ReviewerComments extends Component {
     componentDidMount() {
         console.log(this.data)
         axios
-            .post('https://localhost:44344/api/comment/reviewer', this.data, {
+            .post('https://localhost:44344/api/comment/reviewer', { ID: this.state.ID, AnswerType: this.state.AnswerType, Answer: this.state.Answer, Comment: this.state.Comment }, {
                 headers: {
                     'content-type': 'application/json',
                     "Access-Control-Allow-Origin": "*"
@@ -69,17 +67,17 @@ class ReviewerComments extends Component {
                             <td style={{ border: "1px solid rgb(0, 0, 0)", width: 100 }}></td>
                             <td style={{ border: "1px solid rgb(0, 0, 0)", width: 150 }}>
                                 <div>
-                                    <input type='text' name='answerType' value={this.data.AnswerType} onChange={this.changeHandler} placeholder='Answer Type' style={{ width: 140 }} />
+                                    <input type='text' name='AnswerType' value={this.state.AnswerType} onChange={this.changeHandler} placeholder='Answer Type' style={{ width: 140 }} />
                                 </div>
                             </td>
                             <td style={{ border: "1px solid rgb(0, 0, 0)", width: 100 }}>
                                 <div>
-                                    <input type='text' name='answer' value={this.data.Answer} onChange={this.changeHandler} placeholder='Answer' style={{ width: 90 }} />
+                                    <input type='text' name='Answer' value={this.state.Answer} onChange={this.changeHandler} placeholder='Answer' style={{ width: 90 }} />
                                 </div>
                             </td>
                             <td style={{ border: "1px solid rgb(0, 0, 0)", width: 1000 }}>
                                 <div>
-                                    <input type='text' name='comment' value={this.data.Comment} onChange={this.changeHandler} placeholder='Comment' style={{ width: 990 }} />
+                                    <input type='text' name='Comment' value={this.state.Comment} onChange={this.changeHandler} placeholder='Comment' style={{ width: 990 }} />
                                 </div>
                             </td>
                             <td style={{ width: 100 }}><button type='submit'>Submit </button></td>

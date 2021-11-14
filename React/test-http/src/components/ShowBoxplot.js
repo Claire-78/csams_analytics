@@ -3,7 +3,7 @@ import { Boxplot, computeBoxplotStats } from 'react-boxplot'
 import StatisticsList from './StatisticsList'
 console.log("You have gotten to the right page")
 
-//These values are only for testing purposes
+// Values for testing purpose only
 const values =
     [88,
         30,
@@ -38,7 +38,10 @@ const values =
     ]
 
 const ShowBoxplot = () => {
-    // const values = int(statslist)
+    // backend return array with strings
+    // min, max, mean, median, Q1, Q3, SD
+    // min = whiskerlow, max = whiskerhigh, Q1 = quartile1, Q3 = quartile3, median = quartile3
+
     const stats = computeBoxplotStats(values)
     return (
 
@@ -54,6 +57,14 @@ const ShowBoxplot = () => {
                 min={0}
                 max={100}
                 stats={stats}
+            /* stats={{
+                whiskerLow: 1,
+                quartile1: 1,
+                quartile2: 3,
+                quartile3: 4,
+                whiskerHigh: 5,
+                outliers: [],
+            }} */
             />
         </div>
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import UserReviewsList from './userReviewsList'
 import StatisticsList from './StatisticsList'
+import ShowBoxplot from './ShowBoxplot'
 
 class Statistics extends Component {
 	constructor(props) {
@@ -120,7 +121,9 @@ class Statistics extends Component {
 					{statisticslist}
 					{errorMsg1 ? <div>{errorMsg1}</div> : null}
 				</div>
-
+				<div>
+					<ShowBoxplot />
+				</div>
 				<div>
 					<h1>
 						Comments

@@ -40,12 +40,4 @@ export const MenuItems = [
         url: '#',
         cName: 'nav-links-mobile'
     },
-    {
-        title: 'Boxplot',
-        url: 'http://localhost:3000/ShowBoxplot',
-        cName: 'nav-links'
-    },
-
-
-
 ]

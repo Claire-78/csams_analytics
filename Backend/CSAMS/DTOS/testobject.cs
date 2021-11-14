@@ -24,5 +24,13 @@ namespace CSAMS.DTOS
         public string targetID { get; set; }
         public string errorMsg { get; set; }
     }
+
+    public class PostMessage
+    {
+        public int Id { get; set; }
+        public string AnswerType { get; set; }
+        public string Answer { get; set; }
+        public string Comment { get; set; }
+    }
 }
 

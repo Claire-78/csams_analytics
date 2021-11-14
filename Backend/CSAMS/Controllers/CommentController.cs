@@ -1,5 +1,6 @@
 ﻿using CSAMS.APIModels;
 using CSAMS.Models;
+using CSAMS.DTOS;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,6 +18,101 @@ namespace CSAMS.Controllers
         public CommentController(AppDbContext context)
         {
             _context = context;
+        }
+
+        [HttpPost("reviewer")]
+        public async Task<ActionResult<CommentModel[]>> GetCommentsByReviewer(PostMessage filters)
+        {
+            var reviewer = await _context.Users.Where(u => u.ID == filters.Id).FirstOrDefaultAsync();
+
+            if (reviewer is null)
+                return BadRequest($"No reviewer with ID {filters.Id} exist!");
+
+            var reviews = await _context.UserReviews.ToArrayAsync();
+
+            //Filter by Reviewer
+            var returnValue = reviews.Where(m => m.UserReviewer == filters.Id && m.Comment != null).ToArray();
+
+            if (returnValue.Length == 0 || returnValue is null)
+                return BadRequest($"Reviewer {filters.Id} has no commented reviews!");
+
+
+            //Filter by AnswerType
+            if (filters.AnswerType != "")
+            {
+                returnValue = returnValue.Where(m => m.Type.Contains(filters.AnswerType)).ToArray();
+
+                if (returnValue.Length == 0 || returnValue is null)
+                    return BadRequest($"Reviewer {filters.Id} has no commented reviews with an answer type '{filters.AnswerType}'!");
+            }
+
+            //Filter by Answer
+            if (filters.Answer != "")
+            {
+                returnValue = returnValue.Where(m => m.Answer != null && m.Answer.Contains(filters.Answer)).ToArray();
+
+                if (returnValue.Length == 0 || returnValue is null)
+                    return BadRequest($"Reviewer {filters.Id} has no commented reviews with an answer type '{filters.AnswerType}' and the answer '{filters.Answer}'!");
+            }
+
+            //Filter by Comment
+            if (filters.Comment != "")
+            {
+                returnValue = returnValue.Where(m => m.Comment.Contains(filters.Comment)).ToArray();
+
+                if (returnValue.Length == 0 || returnValue is null)
+                    return BadRequest($"Reviewer {filters.Id} has no commented reviews with an answer type '{filters.AnswerType}', the answer '{filters.Answer}' and a comment that contains '{filters.Comment}'!");
+            }
+
+            return returnValue.Select(m => new CommentModel { Target = m.UserTarget, Answer = m.Answer, AnswerType = m.Type, Comment = m.Comment, Reviewer = m.UserReviewer }).ToArray();
+        }
+
+
+        [HttpPost("project")]
+        public async Task<ActionResult<CommentModel[]>> GetCommentsByAssignment(PostMessage filters)
+        {
+            var project = await _context.Assignments.Where(A => A.ID == filters.Id).FirstOrDefaultAsync();
+
+            if (project is null)
+                return BadRequest($"No project with ID {filters.Id} exist!");
+
+            var reviews = await _context.UserReviews.ToArrayAsync();
+
+            //Filter by Project
+            var returnValue = reviews.Where(m => m.AssignmentID == filters.Id).ToArray();
+
+            if (returnValue.Length == 0 || returnValue is null)
+                return BadRequest($"Project {filters.Id} has no commented reviews!");
+
+
+            //Filter by AnswerType
+            if (filters.AnswerType != "")
+            {
+                returnValue = returnValue.Where(m => m.Type.Contains(filters.AnswerType)).ToArray();
+
+                if (returnValue.Length == 0 || returnValue is null)
+                    return BadRequest($"Project {filters.Id} has no commented reviews with an answer type '{filters.AnswerType}'!");
+            }
+
+            //Filter by Answer
+            if (filters.Answer != "")
+            {
+                returnValue = returnValue.Where(m => m.Answer != null && m.Answer.Contains(filters.Answer)).ToArray();
+
+                if (returnValue.Length == 0 || returnValue is null)
+                    return BadRequest($"Project {filters.Id} has no commented reviews with an answer type '{filters.AnswerType}' and the answer '{filters.Answer}'!");
+            }
+
+            //Filter by Comment
+            if (filters.Comment != "")
+            {
+                returnValue = returnValue.Where(m => m.Comment != null && m.Comment.Contains(filters.Comment)).ToArray();
+
+                if (returnValue.Length == 0 || returnValue is null)
+                    return BadRequest($"Project {filters.Id} has no commented reviews with an answer type '{filters.AnswerType}', the answer '{filters.Answer}' and a comment that contains '{filters.Comment}'!");
+            }
+
+            return returnValue.Select(m => new CommentModel { Target = m.UserTarget, Answer = m.Answer, AnswerType = m.Type, Comment = m.Comment, Reviewer = m.UserReviewer }).ToArray();
         }
 
         [HttpGet("project/{projectID}")]

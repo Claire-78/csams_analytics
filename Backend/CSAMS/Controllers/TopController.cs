@@ -144,7 +144,13 @@ namespace CSAMS.Controllers
 
                   .ToArray();
             var toAverege = _context.UserReviews.Include(r => r.Review).ToArray();
-           return OuterTopProjects(N, Type, IsProject, userdata, fields, toAverege);
+            
+            var ret = OuterTopProjects(N, Type, IsProject, userdata, fields, toAverege);
+
+            if (ret.Length == 0)
+                return BadRequest("0 length");
+
+            return ret;
         }
 
 

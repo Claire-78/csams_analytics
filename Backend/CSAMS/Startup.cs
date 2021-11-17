@@ -28,20 +28,10 @@ namespace CSAMS
                     builder =>
                     {
                         builder.WithOrigins("http://localhost:3000")
-                        // .WithExposedHeaders("content-type")
-                        // .AllowAnyOrigin()
-                         .AllowAnyMethod()
-                          .AllowAnyHeader()
-                       //   .AllowAnyOrigin()
-                       // .AllowAnyHeader()
-                       //  .WithMethods("POST",  "GET")
-                        ;
-
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
                     });
             });
-        
-        
-        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +43,7 @@ namespace CSAMS
             }
             app.UseHttpsRedirection();
             app.UseRouting();
-       
+
             app.UseCors(MyAllowSpecificOrigins);
             app.UseAuthorization();
 

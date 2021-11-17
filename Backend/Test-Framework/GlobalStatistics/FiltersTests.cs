@@ -6,6 +6,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test_Framework.GlobalStatistics
 {
+    /// <summary>
+    /// Class for testing functions in the StatisticsController
+    /// </summary>
     [TestClass]
     public class FiltersTests
     {

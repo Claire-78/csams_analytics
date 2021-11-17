@@ -6,6 +6,9 @@ using CSAMS.APIModels;
 
 namespace Test_Framework.TestData
 {
+    /// <summary>
+    /// Data for the purpose of testing the Backend functions
+    /// </summary>
     public class TestData
     {
         public static readonly Forms[] FormTest =

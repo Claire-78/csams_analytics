@@ -5,6 +5,9 @@ using System.IO;
 
 namespace CSAMS.Models
 {
+    /// <summary>
+    /// Class for connecting with the database
+    /// </summary>
     public class AppDbContext : DbContext
     {
         public DbSet<Assignments> Assignments { get; set; }

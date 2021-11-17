@@ -6,6 +6,9 @@ using Test_Framework.Methods;
 
 namespace Test_Framework.GlobalStatistics
 {
+    /// <summary>
+    /// Class for testing the CommentsController functions
+    /// </summary>
     [TestClass]
     public class CommentTests
     {
@@ -33,6 +36,9 @@ namespace Test_Framework.GlobalStatistics
                 new CommentModel {Target = 1, Reviewer = 2, Answer = "This is just some text", AnswerType = "textarea", Comment = "This review is text"}
         };
 
+        /// <summary>
+        /// Tests the GetProjects Function for returning expected values
+        /// </summary>
         [TestMethod]
         public void TestProjectCommentsOne()
         {
@@ -40,6 +46,9 @@ namespace Test_Framework.GlobalStatistics
             Assert.IsTrue(EqualClassChecker.APIModelEqual(ExpectedProjectResultOne, result));
         }
 
+        /// <summary>
+        /// Tests the GetProjects Function for returning expected values
+        /// </summary>
         [TestMethod]
         public void TestProjectCommentsTwo()
         {
@@ -47,6 +56,9 @@ namespace Test_Framework.GlobalStatistics
             Assert.IsTrue(EqualClassChecker.APIModelEqual(ExpectedProjectResultTwo, result));
         }
 
+        /// <summary>
+        /// Tests the GetProjects Function for returning only the expected values
+        /// </summary>
         [TestMethod]
         public void TestProjectCommentsFail()
         {
@@ -54,6 +66,9 @@ namespace Test_Framework.GlobalStatistics
             Assert.IsFalse(EqualClassChecker.APIModelEqual(ExpectedProjectResultTwo, result));
         }
 
+        /// <summary>
+        /// Tests the GetProjects Function for returning null when there is no data matching the input number
+        /// </summary>
         [TestMethod]
         public void TestNoApplicableResult()
         {
@@ -61,6 +76,9 @@ namespace Test_Framework.GlobalStatistics
             Assert.IsTrue(result is null);
         }
 
+        /// <summary>
+        /// Tests the GetReviewers Function for returning expected values
+        /// </summary>
         [TestMethod]
         public void TestReviewCommentsOne()
         {
@@ -68,6 +86,9 @@ namespace Test_Framework.GlobalStatistics
             Assert.IsTrue(EqualClassChecker.APIModelEqual(ExpectedReviewerResultOne, result));
         }
 
+        /// <summary>
+        /// Tests the GetReviewers Function for returning expected values
+        /// </summary>
         [TestMethod]
         public void TestReviewCommentsTwo()
         {
@@ -75,6 +96,9 @@ namespace Test_Framework.GlobalStatistics
             Assert.IsTrue(EqualClassChecker.APIModelEqual(ExpectedReviewerResultTwo, result));
         }
 
+        /// <summary>
+        /// Tests the GetReviewers Function for returning only the expected values
+        /// </summary>
         [TestMethod]
         public void TestReviewCommentsFail()
         {
@@ -82,6 +106,9 @@ namespace Test_Framework.GlobalStatistics
             Assert.IsFalse(EqualClassChecker.APIModelEqual(ExpectedReviewerResultTwo, result));
         }
 
+        /// <summary>
+        /// Tests the GetReviewers Function for returning null when there is no data matching the input number
+        /// </summary>
         [TestMethod]
         public void TestReviewCommentsIsNull()
         {

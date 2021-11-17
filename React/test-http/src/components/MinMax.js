@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-//cleaimport MinMaxList from './MinMaxList'
-//import MaxTest from './MinMaxList'
 
 class MinMax extends Component {
 	constructor(props) {

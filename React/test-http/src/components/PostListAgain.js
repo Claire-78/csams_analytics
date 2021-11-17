@@ -1,6 +1,5 @@
-import React, { Component/*,useState,useEffect*/ } from 'react'
+import React, { Component } from 'react'
 import axios from 'axios'
-//import UserList from './User'
 
 class PostListAgain extends Component {
     constructor(props) {

@@ -35,7 +35,6 @@ class Top extends Component {
 
     doSomething() {
 
-        //  console.log(this.state)
 
         if (this.state.Submited === true) {
             axios
@@ -43,18 +42,15 @@ class Top extends Component {
                 .then(response => {
                     console.log(response)
                     this.setState({ posts: response.data })
-                    //  this.setState({site:'https://localhost:44344/api/Top/top'})
                     this.setState({ errorMsg: '' })
                     this.setState({ errorMsg2: '' })
 
-                    // TopInsides(this.state.posts,this.state.Backup)
                 })
                 .catch(error => {
                     console.log(error)
-                    this.setState({posts: []})
+                    this.setState({ posts: [] })
                     this.setState({ errorMsg: 'Error retrieving data' })
                 })
-            // this.setState({Submited:false})
         }
     }
 
@@ -69,18 +65,10 @@ class Top extends Component {
         }
         this.setState({ Backup: this.state.IsProject })
         this.setState({ Submited: true }, () => { this.doSomething() })
-        // this.setState({site:this.state.site+'/'+this.state.N+'/'+this.state.Type+'/'+this.state.IsProject},()=>{ this.doSomething()})
-
-
-        // this.doSomething()
-
-
     }
-    //clickHandler() { }
 
     onChangeValue(event) {
         this.setState({ Type: EventTarget.value })
-        //console.log(this.state)
     }
     changeColorIs() {
         this.setState({ ProjectsClicked: !this.state.ProjectsClicked })
@@ -88,7 +76,6 @@ class Top extends Component {
 
     changeColorType() {
         this.setState({ TopsClicked: !this.state.TopsClicked })
-        // console.log(this.state+"COLOR CHANGE!!")
     }
 
     render() {
@@ -105,23 +92,7 @@ class Top extends Component {
             console.log(this.state)
             message =
                 <div style={{ textAlign: 'center' }}>
-
-                    {/* <tr style={{ display: 'flex', justifyContent: 'center' }}>
-              <td style={{ border: "1px solid rgb(0, 0, 0)", width: 300 }}>Grade</td>
-             <td style={{ border: "1px solid rgb(0, 0, 0)", width: 300 }}>Assignment name</td>
-             <td style={{ border: "1px solid rgb(0, 0, 0)", width: 200 }}>Assignment ID</td>
-             <td style={{ border: "1px solid rgb(0, 0, 0)", width: 200 }}>Reviewer ID</td>
-         </tr> */}
-
                     {TopInsides(posts, this.state.Backup)}
-                    {/* {posts.map(row => (
-         <tr key={row.id} style={{ display: 'flex', justifyContent: 'center' }}>
-               <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 300 }}>{row.grade}</td>          
-              <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 300 }}>{row.assingmentName}</td>
-              <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n % 2) === 1 ? '#aae' : '#dde', width: 200 }}>{row.assingmentID}</td>
-              <td style={{ border: "1px solid rgb(0, 0, 0)", backgroundColor: (n++ % 2) === 1 ? '#aae' : '#dde', width: 200 }}>{row.reviewerID}</td>
-          </tr>
-            ))} */}
                 </div>
         }
 
@@ -132,14 +103,13 @@ class Top extends Component {
 
                 <div >
                     Top or Bottom:
-               <button
+                    <button
                         className={btn_classtype2}
 
                         title={"Top"}
 
                         onClick={() => {
                             this.setState({ Type: 'Top' });
-                            // this.setState({TopClicked:false });
                             if (this.state.TopsClicked === true) { this.setState({ TopsClicked: !this.state.TopsClicked }) }
                             console.log(this.state.Type + "Top")
                         }}
@@ -153,7 +123,6 @@ class Top extends Component {
 
                         onClick={() => {
                             this.setState({ Type: 'Bottom' });
-                            // this.setState({TopClicked:false });
                             if (this.state.TopsClicked === false) { this.setState({ TopsClicked: !this.state.TopsClicked }) }
                             console.log(this.state.Type + "BOTTOM")
                         }}
@@ -165,13 +134,12 @@ class Top extends Component {
                 <div >
                     Projects or Reviewers:
 
-               <button
+                    <button
                         className={btn_classIs2}
                         title={"Projects"}
 
                         onClick={() => {
                             this.setState({ IsProject: 'true' });
-                            // this.setState({ProjectsClicked:true });
                             if (this.state.ProjectsClicked === true) { this.setState({ ProjectsClicked: !this.state.ProjectsClicked }) }
 
                         }}
@@ -183,7 +151,6 @@ class Top extends Component {
 
                         onClick={() => {
                             this.setState({ IsProject: 'false' });
-                            //  this.setState({ProjectsClicked:false });
                             if (this.state.ProjectsClicked === false) { this.setState({ ProjectsClicked: !this.state.ProjectsClicked }) }
                             console.log(this.state)
                         }}
@@ -196,12 +163,6 @@ class Top extends Component {
                     <div>
                         <input type='text' name='N' value={N} onChange={this.changeHandler} placeholder='N' />
                     </div>
-                    {/* <div>
-                    <input type='text' name='Type' value={Type}  onChange={this.changeHandler} placeholder='Enter:Top or Bottom'/>
-                </div>
-                <div>
-                    <input type='text' name='IsProject' value={IsProject}  onChange={this.changeHandler} placeholder='Groupby: Projects or Reviewers'/>
-                </div> */}
                     <button type='submit'>Submit </button>
                 </form>
                 <div>{message}</div>

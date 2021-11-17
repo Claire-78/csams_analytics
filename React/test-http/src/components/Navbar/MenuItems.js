@@ -36,8 +36,8 @@ export const MenuItems = [
 
     },
     {
-        title:'Top',
+        title: 'Top',
         url: 'http://localhost:3000/Top/top',
-        cName:'nav-links'
+        cName: 'nav-links'
     }
 ]

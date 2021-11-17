@@ -9,10 +9,10 @@ class ReviewerComments extends Component {
             posts: [],
             errorMsg: '',
             ID: parseInt(props.match.params.id),
-                AnswerType: "",
-                Answer: "",
-                Comment: ""
-            
+            AnswerType: "",
+            Answer: "",
+            Comment: ""
+
         }
     }
 
@@ -48,7 +48,7 @@ class ReviewerComments extends Component {
 
     render() {
         const { posts, errorMsg } = this.state
-        if (errorMsg ==='') {
+        if (errorMsg === '') {
             console.log(errorMsg)
             let n = 0
             return (

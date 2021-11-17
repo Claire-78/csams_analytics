@@ -2,13 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
-using System;
-using CSAMS.DTOS;
 
 
 namespace CSAMS.Controllers
 {
-  
+    /// <summary>
+    /// This class was supposed to be a sample for how to get data from the database
+    /// It is now used to get all Users in the database
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class SampleController : ControllerBase
@@ -20,37 +21,14 @@ namespace CSAMS.Controllers
             _context = context;
         }
 
-        [HttpGet("review")]
-        public async Task<ActionResult<Reviews[]>> GetReviews()
-        {
-            return await _context.Reviews.Include(r => r.Form).ToArrayAsync();
-        }
-
+        /// <summary>
+        /// Get all users
+        /// </summary>
+        /// <returns>Array of Users</returns>
         [HttpGet("user")]
         public async Task<ActionResult<Users[]>> GetUsers()
         {
             return await _context.Users.Include(u => u.UserRole).ToArrayAsync();
         }
-
-        //////////////////////////////
-       
-        [HttpPost("post")]
-        public ActionResult<Users> PostUser(User newuser)
-        {
-           
-            
-            return Ok();
-        }
-
-        
-        [HttpPost("user")]
-        public ActionResult<Users> PostUserFilter(UserFilter newuser)
-        {
-
-
-            return Ok();
-        }
-        
-        ///////////////////
     }
 }

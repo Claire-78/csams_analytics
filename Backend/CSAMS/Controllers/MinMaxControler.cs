@@ -1,13 +1,15 @@
 using CSAMS.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using System;
 
 namespace CSAMS.Controllers
 {
+    /// <summary>
+    /// This class is an early class for statistics. Functions are in StatisticsController as well, but the Rest API for this is used in MinMax on the frontend
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class MinMaxController : ControllerBase

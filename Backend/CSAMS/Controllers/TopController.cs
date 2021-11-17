@@ -60,7 +60,14 @@ namespace CSAMS.Controllers
             return ret;
         }
 
-        // [HttpGet("Top/{N}/{Type}/{IsProject}")]
+        /// <summary>
+        /// Get the Mean Average
+        /// </summary>
+        /// <param name="userReviews"></param>
+        /// <param name="fields"></param>
+        /// <param name="IsProject"></param>
+        /// <param name="average">Mean average of all reviews</param>
+        /// <returns></returns>
         public static TopModel TopProjects(UserReviews[] userReviews, Fields[] fields, bool IsProject, float average)
         {
             var child = userReviews
@@ -83,7 +90,7 @@ namespace CSAMS.Controllers
                           AssingmentID = ur.r.AssignmentID,
                           AssingmentName = ur.r.Assignment.Name,
                           ReviewerID = ur.r.UserReviewer,
-                          type = "Top"
+                          Type = "Top"
                       })
                      .ToArray();
             }
@@ -96,7 +103,7 @@ namespace CSAMS.Controllers
                           AssingmentID = ur.r.AssignmentID,
                           AssingmentName = ur.r.Assignment.Name,
                           ReviewerID = ur.r.UserReviewer,
-                          type = "Top"
+                          Type = "Top"
                       })
                      .ToArray();
             }
@@ -114,7 +121,7 @@ namespace CSAMS.Controllers
                 AssingmentID = grades[0].AssingmentID,
                 AssingmentName = grades[0].AssingmentName,
                 ReviewerID = grades[0].ReviewerID,
-                type = "top"
+                Type = "top"
             };
 
             return model;

@@ -1,7 +1,6 @@
 ﻿using CSAMS.APIModels;
 using CSAMS.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using Test_Framework.Methods;
 
 namespace Test_Framework.GlobalStatistics

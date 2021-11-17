@@ -1,8 +1,8 @@
 ﻿
-using Test_Framework.Methods;
 using CSAMS.Controllers;
 using CSAMS.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Test_Framework.Methods;
 
 namespace Test_Framework.GlobalStatistics
 {
@@ -16,7 +16,7 @@ namespace Test_Framework.GlobalStatistics
             new Assignments { ID = 1, Name = "assi1" };
         public static readonly Assignments Assignment2 =
             new Assignments { ID = 2, Name = "assi2" };
-        
+
 
         public readonly UserReviews[] ExpectedResult1 = {
             new UserReviews {ID = 1, UserTarget = 1, UserReviewer = 2, Name = "assi1_review_01", Type = "radio", Answer = "2", AssignmentID = 1, Assignment = Assignment1, ReviewID = 1, Comment = "Could have been a lot better"},
@@ -131,7 +131,7 @@ namespace Test_Framework.GlobalStatistics
         {
             UserReviews[] result = StatisticsController.ApplyFilterAssignment(TestData.TestData.UserReviewTest, "assi1");
             result = StatisticsController.ApplyFilterReviewerID(result, 3);
-            Assert.IsTrue( result is null);
+            Assert.IsTrue(result is null);
         }
 
         [TestMethod]

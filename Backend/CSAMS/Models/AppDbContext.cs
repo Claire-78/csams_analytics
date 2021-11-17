@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Diagnostics;
-using System.IO;
 
 namespace CSAMS.Models
 {
@@ -27,7 +25,7 @@ namespace CSAMS.Models
         {
             var path = AppDomain.CurrentDomain.BaseDirectory;
             if (path.Contains("bin"))
-            optionsBuilder.UseSqlite($"Data Source={path.Substring(0, path.IndexOf("bin"))}Data/csams.sqlite");
+                optionsBuilder.UseSqlite($"Data Source={path.Substring(0, path.IndexOf("bin"))}Data/csams.sqlite");
         }
     }
 

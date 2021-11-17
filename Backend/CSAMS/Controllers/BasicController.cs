@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CSAMS.Controllers
 {
+    /// <summary>
+    /// Controller that was originally meant to be part of an example
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class BasicController : ControllerBase
@@ -17,6 +20,10 @@ namespace CSAMS.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Call that is used to showcase Pagination on the frontend
+        /// </summary>
+        /// <returns>Array of UserReviews with a comment</returns>
         [HttpGet("Comments")]
         public async Task<ActionResult<UserReviews[]>> GetComments()
         {

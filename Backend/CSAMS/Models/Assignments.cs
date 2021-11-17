@@ -1,7 +1,7 @@
-﻿using System;
+﻿using CSAMS.APIModels;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using CSAMS.APIModels;
 
 namespace CSAMS.Models
 {
@@ -11,12 +11,12 @@ namespace CSAMS.Models
         [MaxLength(11)]
         public int ID { get; set; }
         [MaxLength(64)]
-        [Column(TypeName ="VARCHAR")]
+        [Column(TypeName = "VARCHAR")]
         public string Name { get; set; }
         public string Description { get; set; }
         [Timestamp]
         public byte[] Created { get; set; }
-        [Column(TypeName ="datetime2")]
+        [Column(TypeName = "datetime2")]
         public DateTime PublishedDate { get; set; }
         [Column(TypeName = "datetime2")]
         public DateTime Deadline { get; set; }

@@ -1,14 +1,16 @@
 ﻿using CSAMS.APIModels;
-using CSAMS.Models;
 using CSAMS.DTOS;
+using CSAMS.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace CSAMS.Controllers
 {
+    /// <summary>
+    /// Class for getting filtered comments
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class CommentController : ControllerBase
@@ -20,6 +22,11 @@ namespace CSAMS.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Get UserReviews based on filtering by Reviewer
+        /// </summary>
+        /// <param name="filters"></param>
+        /// <returns>Array of filtered UserReviews</returns>
         [HttpPost("reviewer")]
         public async Task<ActionResult<CommentModel[]>> GetCommentsByReviewer(PostMessage filters)
         {
@@ -67,7 +74,11 @@ namespace CSAMS.Controllers
             return returnValue.Select(m => new CommentModel { Target = m.UserTarget, Answer = m.Answer, AnswerType = m.Type, Comment = m.Comment, Reviewer = m.UserReviewer }).ToArray();
         }
 
-
+        /// <summary>
+        /// Get UserReviews based on filtering by Assignment
+        /// </summary>
+        /// <param name="filters"></param>
+        /// <returns>Array of filtered UserReviews</returns>
         [HttpPost("project")]
         public async Task<ActionResult<CommentModel[]>> GetCommentsByAssignment(PostMessage filters)
         {
@@ -115,41 +126,12 @@ namespace CSAMS.Controllers
             return returnValue.Select(m => new CommentModel { Target = m.UserTarget, Answer = m.Answer, AnswerType = m.Type, Comment = m.Comment, Reviewer = m.UserReviewer }).ToArray();
         }
 
-        [HttpGet("project/{projectID}")]
-        public async Task<ActionResult<CommentModel[]>> GetProjectComments(int projectID)
-        {
-            var project = await _context.Assignments.Where(A => A.ID == projectID).FirstOrDefaultAsync();
-
-            if (project is null)
-                return BadRequest($"No project with ID {projectID} exist!");
-
-            var reviews = await _context.UserReviews.ToArrayAsync();
-            var returnValue = GetProjects(reviews, projectID);
-
-            if (returnValue is null)
-                return BadRequest($"Project with ID {projectID} has no commented reviews!");
-
-            return returnValue;
-        }
-
-        [HttpGet("reviewer/{reviewerID}")]
-        public async Task<ActionResult<CommentModel[]>> GetReviewerComments(int reviewerID)
-        {
-            Console.WriteLine(reviewerID);
-            var reviewer = await _context.Users.Where(u => u.ID == reviewerID).FirstOrDefaultAsync();
-
-            if (reviewer is null)
-                return BadRequest($"No reviewer with ID {reviewerID} exist!");
-
-            var reviews = await _context.UserReviews.ToArrayAsync();
-            var returnValue = GetReviewers(reviews, reviewerID);
-
-            if (returnValue is null)
-                return BadRequest($"Reviewer {reviewerID} has no commented reviews!");
-
-            return returnValue;
-        }
-
+        /// <summary>
+        /// Filters UserReviews based on projectID
+        /// </summary>
+        /// <param name="reviews"></param>
+        /// <param name="projectID"></param>
+        /// <returns>Array of filtered UserReviews</returns>
         public static CommentModel[] GetProjects(UserReviews[] reviews, int projectID)
         {
             var proco = reviews.Where(r => r.AssignmentID == projectID && r.Comment != null)
@@ -159,6 +141,12 @@ namespace CSAMS.Controllers
             return null;
         }
 
+        /// <summary>
+        /// Filters UserReviews based on reviewerID
+        /// </summary>
+        /// <param name="reviews"></param>
+        /// <param name="reviewerID"></param>
+        /// <returns>Array of filtered UserReviews</returns>
         public static CommentModel[] GetReviewers(UserReviews[] reviews, int reviewerID)
         {
             var model = reviews.Where(m => m.UserReviewer == reviewerID && m.Comment != null)

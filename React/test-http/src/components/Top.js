@@ -51,7 +51,7 @@ class Top extends Component {
                 })
                 .catch(error => {
                     console.log(error)
-                    this.setState({posts: []})
+                    this.setState({ posts: [] })
                     this.setState({ errorMsg: 'Error retrieving data' })
                 })
             // this.setState({Submited:false})
@@ -132,7 +132,7 @@ class Top extends Component {
 
                 <div >
                     Top or Bottom:
-               <button
+                    <button
                         className={btn_classtype2}
 
                         title={"Top"}
@@ -165,7 +165,7 @@ class Top extends Component {
                 <div >
                     Projects or Reviewers:
 
-               <button
+                    <button
                         className={btn_classIs2}
                         title={"Projects"}
 

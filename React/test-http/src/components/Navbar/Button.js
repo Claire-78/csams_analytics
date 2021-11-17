@@ -1,7 +1,7 @@
 import React from "react";
 import './Button.css'
 
-const STYLES =[
+const STYLES = [
     'btn--primary',
     'btn--outline'
 
@@ -10,30 +10,30 @@ const STYLES =[
 //const SIZES =[
 //   'btn--medium',
 //   'btn--large'
-  
+
 //]
 
-export const Button=({
+export const Button = ({
     children,
     type,
     onclick,
     buttonStyle,
     buttonSize
 
-})=>{
-const checkButtonStyle=STYLES.includes(buttonStyle) ? buttonStyle:STYLES[0]
-//const checkButtonSize=SIZES.includes(buttonSize) ? buttonSize:SIZES[0]
+}) => {
+    const checkButtonStyle = STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0]
+    //const checkButtonSize=SIZES.includes(buttonSize) ? buttonSize:SIZES[0]
 
-return(
-    <button className={`btn ${checkButtonStyle} ${buttonStyle}`}
-        onClick={onclick} type={type}>
-        {/* <button className={`btn ${checkButtonSize} ${buttonSize}`} 
+    return (
+        <button className={`btn ${checkButtonStyle} ${buttonStyle}`}
+            onClick={onclick} type={type}>
+            {/* <button className={`btn ${checkButtonSize} ${buttonSize}`} 
     onClick={onclick} type={type}></button> */}
 
 
-{children}
-    </button>
-)
+            {children}
+        </button>
+    )
 
 
 }

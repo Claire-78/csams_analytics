@@ -2,7 +2,7 @@
 import './App.css';
 import React from "react";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import ReactDOM from "react-dom";
+//import ReactDOM from "react-dom";
 
 import PostListAgain from './components/PostListAgain';
 import Navbar from './components/Navbar/Navbar'

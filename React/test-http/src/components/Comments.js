@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 //import CommentList from './CommentList'
-import Posts from './Pagination/Posts'
-import { Pagination } from './Pagination/Pagination'
+//import Posts from './Pagination/Posts'
+//import { Pagination } from './Pagination/Pagination'
 import ReactPaginate from "react-paginate";
 
 const Comments = () => {
 	const [posts, setPosts] = useState([]);
-	const [loading, setLoading] = useState(false);
+//	const [loading, setLoading] = useState(false);
 
 	const [currentPage, setCurrentPage] = useState(0);
 	const [postsPerPage] = useState(15);
@@ -15,10 +15,10 @@ const Comments = () => {
 	//const [pageNumber, setPageNumber] = useState(0);
 	useEffect(() => {
 		const fetchPosts = async () => {
-			setLoading(true);
+	//		setLoading(true);
 			const res = await axios.get('https://localhost:44344/api/Basic/comments');
 			setPosts(res.data);
-			setLoading(false);
+		//	setLoading(false);
 		};
 
 		fetchPosts();
